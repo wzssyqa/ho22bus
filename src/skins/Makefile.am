@@ -1,0 +1,2 @@
+SUBDIRS= en zh_CN
+EXTRA_DIST =
