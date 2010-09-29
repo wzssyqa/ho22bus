@@ -6,21 +6,12 @@ extern CReciteWord* g_pReciteWord;
 
 
 Cwyabdc::Cwyabdc ()
-{
-#ifdef G_OS_WIN32
-	datapath = reciteword_data_dir + std::string(G_DIR_SEPARATOR_S "WyabdcRealPeopleTTS");
-	havedatafile = g_file_test(datapath.c_str(), G_FILE_TEST_EXISTS);
-	if (!havedatafile) {
-		datapath = "C:\\Program Files\\WyabdcRealPeopleTTS";
-		havedatafile = g_file_test(datapath.c_str(), G_FILE_TEST_EXISTS);
-		if (!havedatafile)
-			datapath.clear();
-	}
-#else
-	havedatafile = g_file_test("/usr/share/WyabdcRealPeopleTTS", G_FILE_TEST_EXISTS);
+{	
+	gchar *filename=g_build_filename(reciteword_data_dir,"TTS",NULL);
+	havedatafile = g_file_test(filename, G_FILE_TEST_EXISTS);
 	if (!havedatafile)
 		g_print("RealPeopleTTS files not found!\n");
-#endif
+	g_free(filename);
 }
 
 Cwyabdc::~Cwyabdc ()
@@ -36,13 +27,18 @@ void Cwyabdc::read(const char *word,PLAY_METHOD method)
 		for (int i=0;i<n;i++)
 			lowerword[i]= g_ascii_tolower(word[i]);
 		lowerword[n] = '\0';
-#ifdef G_OS_WIN32		
-		gchar *filename = g_strdup_printf("%s\\%c\\%s.wav", datapath.c_str(), lowerword[0], lowerword);		
-#else
-		gchar *filename = g_strdup_printf("/usr/share/WyabdcRealPeopleTTS/%c/%s.wav", lowerword[0],lowerword);		
-#endif		
+		
+		gchar *tmpfn = g_strdup_printf("%c/%s.wav", lowerword[0],lowerword);
+		gchar *filename=g_build_filename(reciteword_data_dir,"TTS",tmpfn,NULL);
+		g_free(tmpfn);	
+	
 		if (g_file_test(filename, G_FILE_TEST_EXISTS))
 			play_file (filename,method);
+		else{
+			gchar *cmd = g_strdup_printf("espeak %s",lowerword);
+			system(cmd);
+			g_free(cmd);
+		}
 		g_free(filename);
 		g_free(lowerword);
 	}

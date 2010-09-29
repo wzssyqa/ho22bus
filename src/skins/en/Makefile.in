@@ -105,6 +105,8 @@ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
 GREP = @GREP@
+HO22BUS_CFLAGS = @HO22BUS_CFLAGS@
+HO22BUS_LIBS = @HO22BUS_LIBS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -153,8 +155,6 @@ POSUB = @POSUB@
 PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
 PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
 RANLIB = @RANLIB@
-RECITEWORD_CFLAGS = @RECITEWORD_CFLAGS@
-RECITEWORD_LIBS = @RECITEWORD_LIBS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
@@ -221,7 +221,7 @@ EXTRA_DIST = about.png collectword.png face.png help.png rest.png revise_skimr.p
 	choosebookr.png dict.png groupr.png knowr.png revise_groupr.png shooting.png test.png \
 	chooseword.png dictr.png gtkrc revise_skim.png shootingr.png testr.png mark.png markr.png
 
-skinrwdir = $(datadir)/reciteword/skins/en
+skinrwdir = $(datadir)/ho22bus/skins/en
 skinrw_DATA = $(EXTRA_DIST)
 all: all-am
 

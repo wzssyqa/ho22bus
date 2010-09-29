@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.52)
 
-AC_INIT(reciteword, 0.8.4, http://reciteword.cosoft.org.cn)
+AC_INIT(ho22bus, 0.8.4.1, http://code.google.com/p/ho22bus)
 AC_CONFIG_SRCDIR(src/reciteword.cpp)
 AM_INIT_AUTOMAKE([dist-bzip2])
 
@@ -23,7 +23,7 @@ AC_PROG_MAKE_SET
 dnl ================================================================
 dnl Gettext stuff.
 dnl ================================================================
-GETTEXT_PACKAGE=reciteword
+GETTEXT_PACKAGE=ho22bus
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package])
 ALL_LINGUAS="zh_CN"
@@ -32,14 +32,14 @@ AM_GLIB_GNU_GETTEXT
 dnl
 dnl Start of pkg-config checks
 dnl
-PKG_CHECK_MODULES(RECITEWORD, gtk+-2.0 >= 2.2.0 gthread-2.0 >= 2.2.0)
-RECITEWORD_LIBS="${RECITEWORD_LIBS}"
-RECITEWORD_CFLAGS="\
+PKG_CHECK_MODULES(HO22BUS, gtk+-2.0 >= 2.2.0 gthread-2.0 >= 2.2.0)
+HO22BUS_LIBS="${HO22BUS_LIBS}"
+HO22BUS_CFLAGS="\
 	-Wall \
-	$RECITEWORD_CFLAGS"
+	$HO22BUS_CFLAGS"
 
-AC_SUBST(RECITEWORD_LIBS)
-AC_SUBST(RECITEWORD_CFLAGS)
+AC_SUBST(HO22BUS_LIBS)
+AC_SUBST(HO22BUS_CFLAGS)
 
 
 dnl ==========================================================================
@@ -63,6 +63,6 @@ src/win32/nsis/Makefile
 
 echo "
 
-Type \"make\" to compile reciteword.
+Type \"make\" to compile ho22bus.
 
 "

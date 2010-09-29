@@ -34,7 +34,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = reciteword$(EXEEXT)
+bin_PROGRAMS = ho22bus$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -47,22 +47,22 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_reciteword_OBJECTS = about.$(OBJEXT) bookfile.$(OBJEXT) \
-	choosebook.$(OBJEXT) rwconfig.$(OBJEXT) configfile.$(OBJEXT) \
-	chooseword.$(OBJEXT) collectword.$(OBJEXT) dict.$(OBJEXT) \
-	firstrecite.$(OBJEXT) firstrecite_test.$(OBJEXT) \
-	help.$(OBJEXT) mark.$(OBJEXT) menu.$(OBJEXT) mydict.$(OBJEXT) \
-	reciteword.$(OBJEXT) record.$(OBJEXT) revise.$(OBJEXT) \
-	revise_test.$(OBJEXT) rest.$(OBJEXT) readword.$(OBJEXT) \
-	know.$(OBJEXT) option.$(OBJEXT) shooting.$(OBJEXT) \
-	skin.$(OBJEXT) sound.$(OBJEXT) sndserv.$(OBJEXT) \
-	typing.$(OBJEXT) widget.$(OBJEXT)
-reciteword_OBJECTS = $(am_reciteword_OBJECTS)
+am_ho22bus_OBJECTS = bookfile.$(OBJEXT) choosebook.$(OBJEXT) \
+	rwconfig.$(OBJEXT) configfile.$(OBJEXT) chooseword.$(OBJEXT) \
+	collectword.$(OBJEXT) dict.$(OBJEXT) firstrecite.$(OBJEXT) \
+	firstrecite_test.$(OBJEXT) help.$(OBJEXT) mark.$(OBJEXT) \
+	menu.$(OBJEXT) mydict.$(OBJEXT) reciteword.$(OBJEXT) \
+	record.$(OBJEXT) revise.$(OBJEXT) revise_test.$(OBJEXT) \
+	rest.$(OBJEXT) readword.$(OBJEXT) know.$(OBJEXT) \
+	option.$(OBJEXT) shooting.$(OBJEXT) skin.$(OBJEXT) \
+	sound.$(OBJEXT) sndserv.$(OBJEXT) typing.$(OBJEXT) \
+	widget.$(OBJEXT)
+ho22bus_OBJECTS = $(am_ho22bus_OBJECTS)
 am__DEPENDENCIES_1 =
-reciteword_DEPENDENCIES = $(am__DEPENDENCIES_1)
-reciteword_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
-	$(CXXFLAGS) $(reciteword_LDFLAGS) $(LDFLAGS) -o $@
+ho22bus_DEPENDENCIES = $(am__DEPENDENCIES_1)
+ho22bus_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
+	$(ho22bus_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -85,8 +85,8 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(reciteword_SOURCES)
-DIST_SOURCES = $(reciteword_SOURCES)
+SOURCES = $(ho22bus_SOURCES)
+DIST_SOURCES = $(ho22bus_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-dvi-recursive install-exec-recursive \
@@ -163,6 +163,8 @@ GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
 GREP = @GREP@
+HO22BUS_CFLAGS = @HO22BUS_CFLAGS@
+HO22BUS_LIBS = @HO22BUS_LIBS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -211,8 +213,6 @@ POSUB = @POSUB@
 PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
 PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
 RANLIB = @RANLIB@
-RECITEWORD_CFLAGS = @RECITEWORD_CFLAGS@
-RECITEWORD_LIBS = @RECITEWORD_LIBS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
@@ -275,17 +275,15 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = tools modules skins win32
 INCLUDES = \
-	$(RECITEWORD_CFLAGS)						\
-	-DRECITEWORD_DATA_DIR=\""$(datadir)/reciteword"\"		\
-	-DRECITEWORD_LOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"
+	$(HO22BUS_CFLAGS)						\
+	-DHO22BUS_DATA_DIR=\""$(datadir)/ho22bus"\"		\
+	-DHO22BUS_LOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"
 
-reciteword_LDFLAGS = 
-reciteword_LDADD = \
-	$(RECITEWORD_LIBS)			
+ho22bus_LDFLAGS = 
+ho22bus_LDADD = \
+	$(HO22BUS_LIBS)			
 
-reciteword_SOURCES = \
-	about.cpp			\
-	about.h			\
+ho22bus_SOURCES = \
 	bookfile.cpp			\
 	bookfile.h			\
 	choosebook.cpp	\
@@ -419,9 +417,9 @@ clean-binPROGRAMS:
 	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
 	echo " rm -f" $$list; \
 	rm -f $$list
-reciteword$(EXEEXT): $(reciteword_OBJECTS) $(reciteword_DEPENDENCIES) 
-	@rm -f reciteword$(EXEEXT)
-	$(reciteword_LINK) $(reciteword_OBJECTS) $(reciteword_LDADD) $(LIBS)
+ho22bus$(EXEEXT): $(ho22bus_OBJECTS) $(ho22bus_DEPENDENCIES) 
+	@rm -f ho22bus$(EXEEXT)
+	$(ho22bus_LINK) $(ho22bus_OBJECTS) $(ho22bus_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -429,7 +427,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/about.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/bookfile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/choosebook.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/chooseword.Po@am__quote@

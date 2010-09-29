@@ -4,5 +4,5 @@ EXTRA_DIST = about.png collectword.png face.png help.png rest.png revise_skimr.p
 	choosebookr.png dict.png groupr.png knowr.png revise_groupr.png shooting.png test.png \
 	chooseword.png dictr.png gtkrc revise_skim.png shootingr.png testr.png mark.png markr.png
 
-skinrwdir = $(datadir)/reciteword/skins/en
+skinrwdir = $(datadir)/ho22bus/skins/en
 skinrw_DATA = $(EXTRA_DIST)

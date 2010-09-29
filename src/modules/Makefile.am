@@ -6,5 +6,5 @@ EXTRA_DIST = answerno2.wav answerok.wav buttonactive.wav buttondown.wav chord.wa
 	filling.zh_CN.txt know.zh_CN.txt revise.zh_CN.txt typing.zh_CN.txt
 
 
-modulesdir = $(datadir)/reciteword/modules
+modulesdir = $(datadir)/ho22bus/modules
 modules_DATA = $(EXTRA_DIST)

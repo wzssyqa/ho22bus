@@ -37,31 +37,11 @@
 #include <cstdlib>
 #include <ctime>
 
-#ifdef G_OS_WIN32
-    #include <windows.h>
-#endif
-
-
-/*# include "menu.h"
-
-
-
-CDict* g_pDict = NULL;
-CAbout g_pAbout;
-CMenu g_pMenu;
-*/
-
 CReciteWord *g_pReciteWord = NULL;
 struct _Skin *Skin = NULL;
 extern ConfigFile *usercfgfile;
 
 gchar reciteword_data_dir[256];
-
-/*static void
-PopupHelp (gpointer data)
-{
-	g_print ("help");
-}*/
 
 void
 CReciteWord::PopupRecord (gpointer data)
@@ -86,21 +66,47 @@ CReciteWord::PopupOption (gpointer data)
 void
 CReciteWord::PopupHelp (gpointer data)
 {
-	if (!g_pReciteWord->help_window)
-	{
-		g_pReciteWord->help_window = new CHelp;
-	}
-	g_pReciteWord->help_window->show ();
+	gchar *htindex=g_build_filename(reciteword_data_dir,"../doc",PACKAGE,"index.html",NULL);
+	gchar *cmd=g_strdup_printf("xdg-open %s",htindex);
+	system(cmd);
+	g_free(htindex);
+	g_free(cmd);
 }
 
 void
 CReciteWord::PopupAbout (gpointer data)
 {
-	if (!g_pReciteWord->about_window)
-	{
-		g_pReciteWord->about_window = new tAbout;
-	}
-	g_pReciteWord->about_window->show ();
+	const gchar *authors[]={"YunQiang Su <wzssyqa@gmail.com>",
+		 _("forked from reciteword by Hu Zheng http://reciteword.cosoft.org.cn/"),
+		 NULL
+		};
+
+	const gchar *artists[]={NULL};
+	const gchar *documenters[]={NULL};
+	const gchar *comments=NULL;
+	const gchar *copyright=N_("Copyright Contributors of h022bus");
+	const gchar *license="GPLv3";
+	const gchar *logo_icon_name=NULL;
+	const gchar *program_name=PACKAGE;
+	const gchar *translator_credits=N_("translator-credits");
+	const gchar *version=VERSION;
+	const gchar *website=PACKAGE_URL;
+	
+
+	gtk_show_about_dialog(NULL,
+			"authors", authors,
+			"artists", artists,
+			"documenters", documenters,
+			"comments", comments,
+			"copyright", copyright,
+			"license", license,
+			"logo-icon-name", logo_icon_name,
+			"program-name", program_name,
+			"translator-credits", translator_credits,
+			"version", version,
+			"website", website,
+			NULL
+	);
 }
 
 
@@ -1287,7 +1293,6 @@ CReciteWord::CReciteWord ()
 
 	window = NULL;
 	menu = NULL;
-	about_window = NULL;
 	dict_window = NULL;
 	help_window = NULL;
 	record_window = NULL;
@@ -1312,8 +1317,6 @@ CReciteWord::~CReciteWord ()
 {
 	if (menu)
 		delete (menu);
-	if (about_window)
-		delete (about_window);
 	if (dict_window)
 		delete (dict_window);
 	if (help_window)
@@ -1369,16 +1372,11 @@ void
 CReciteWord::create ()
 {
 	init ();
-//	gtk_widget_push_visual (gdk_rgb_get_visual ());
-//	gtk_widget_push_colormap (gdk_rgb_get_cmap ());
+
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-//	gtk_widget_pop_visual ();
-//	gtk_widget_pop_colormap ();
-#ifdef G_OS_WIN32
-	gtk_widget_set_events(window,GDK_SCROLL_MASK | GDK_BUTTON_PRESS_MASK);
-#else
+
+
 	gtk_widget_set_events(window,GDK_SCROLL_MASK);
-#endif
 	gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
 	gtk_widget_set_app_paintable(window,TRUE);
 	gtk_window_set_resizable(GTK_WINDOW(window),FALSE);
@@ -1389,21 +1387,7 @@ CReciteWord::create ()
 	gtk_widget_realize(window);
 	skin_load_reciteword (window);
 	skin_load_face (window);
-// the following pixmaps will be load when it is needed.
-/*	  
-skin_load_about (window);
-skin_load_dict (window);
-skin_load_group (window);
-skin_load_skim (window);
-skin_load_test (window);
-skin_load_text (window);
-skin_load_revise_group (window);
-skin_load_revise_test (window);
-skin_load_revise_skim (window);
-skin_load_shooting (window);
-skin_load_typing (window);
-skin_load_chooseword (window);
-*/
+
 	gtk_window_set_icon (GTK_WINDOW(window),Skin->face.icon.p[0]);
 	
 	tooltips = gtk_tooltips_new ();
@@ -1532,8 +1516,6 @@ CReciteWord::destroy ()
 
 	clean ();
 
-	if ((about_window) && (about_window->showing))
-		about_window->close ();
 	if ((dict_window) && (dict_window->showing))
 		dict_window->close ();
 	if ((help_window) && (help_window->showing))
@@ -1744,123 +1726,34 @@ CReciteWord::load_book (gchar *filename)
 	}
 	else
 	{
-#ifdef G_OS_WIN32
-#else
 		g_print ("load %s error!\n", filename);
-#endif
 	}
 }
 
-#ifdef G_OS_WIN32
-static void reciteword_dummy_print( const gchar* string ) {
-	return;
-}
-
-static void reciteword_dummy_log_handler (const gchar    *domain,
-				    GLogLevelFlags  flags,
-				    const gchar    *msg,
-				    gpointer        user_data) {
-	return;
-}
-#endif
 
 static gboolean set_reciteword_data_dir(void) {
-#ifdef G_OS_WIN32
-	/* Determine ReciteWord Paths during Runtime */
-	HMODULE hmod;
-
-	hmod = GetModuleHandle(NULL);
-	if( hmod == 0 ) {
-		return true;
-	}
-	if(GetModuleFileName( hmod, (char*)&reciteword_data_dir, 256 ) == 0) {
-		return true;
-	}
-	gchar* buf;
-	buf = g_path_get_dirname( reciteword_data_dir );
-	strcpy( (char*)&reciteword_data_dir, buf );
-	g_free( buf );
+	strcpy(reciteword_data_dir, HO22BUS_DATA_DIR);
 	return false;
-#else
-	strcpy(reciteword_data_dir, RECITEWORD_DATA_DIR);
-	return false;
-#endif
 }
 
 
-#ifdef G_OS_WIN32
-int WINAPI
-WinMain (HINSTANCE hThisInstance,
-         HINSTANCE hPrevInstance,
-         LPSTR lpszArgument,
-         int nFunsterStil)
-#else
 int main(int argc, char *argv[])
-#endif
 {
 	if (set_reciteword_data_dir())
 		return 0;
-#ifdef G_OS_WIN32
-	gchar *locale_dir;
-	locale_dir = g_strdup_printf("%s" G_DIR_SEPARATOR_S "locale", reciteword_data_dir);
-	bindtextdomain (GETTEXT_PACKAGE, locale_dir);
-	g_free(locale_dir);
-#else
-	bindtextdomain (GETTEXT_PACKAGE, RECITEWORD_LOCALEDIR);
-#endif	
+
+	bindtextdomain (GETTEXT_PACKAGE, HO22BUS_LOCALEDIR);
+
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 	g_thread_init(NULL);
 	gtk_set_locale ();
-#ifdef G_OS_WIN32
-    gtk_init (&_argc, &_argv);
 
-	/* We don't want a console window.. */
-	/*
-	 *  Any calls to the glib logging functions, result in a call to AllocConsole().
-	 *  ME and 98 will in such cases produce a console window (2000 not), despite
-	 *  being built as a windows app rather than a console app.  So we should either
-	 *  ignore messages by setting dummy log handlers, or redirect messages.
-	 *  This requires setting handlers for all domains (any lib which uses g_logging).
-	 */
-
-	g_log_set_handler (NULL, (GLogLevelFlags)(G_LOG_LEVEL_MASK | G_LOG_FLAG_FATAL | G_LOG_FLAG_RECURSION),
-			   reciteword_dummy_log_handler, NULL);	
-	g_log_set_handler ("Gdk", (GLogLevelFlags)(G_LOG_LEVEL_MASK | G_LOG_FLAG_FATAL | G_LOG_FLAG_RECURSION),
-			   reciteword_dummy_log_handler, NULL);
-	g_log_set_handler ("Gtk", (GLogLevelFlags)(G_LOG_LEVEL_MASK | G_LOG_FLAG_FATAL | G_LOG_FLAG_RECURSION),
-			   reciteword_dummy_log_handler, NULL);
-	g_log_set_handler ("GLib", (GLogLevelFlags)(G_LOG_LEVEL_MASK | G_LOG_FLAG_FATAL | G_LOG_FLAG_RECURSION),
-			   reciteword_dummy_log_handler, NULL);
-	g_log_set_handler ("GModule", (GLogLevelFlags)(G_LOG_LEVEL_MASK | G_LOG_FLAG_FATAL | G_LOG_FLAG_RECURSION),
-			   reciteword_dummy_log_handler, NULL);
-	g_log_set_handler ("GLib-GObject", (GLogLevelFlags)(G_LOG_LEVEL_MASK | G_LOG_FLAG_FATAL | G_LOG_FLAG_RECURSION),
-			   reciteword_dummy_log_handler, NULL);
-	g_log_set_handler ("GThread", (GLogLevelFlags)(G_LOG_LEVEL_MASK | G_LOG_FLAG_FATAL | G_LOG_FLAG_RECURSION),
-			   reciteword_dummy_log_handler, NULL);
-
-	/* g_print also makes a call to AllocConsole(), therefore a handler needs to be
-	   set here aswell */
-	g_set_print_handler( reciteword_dummy_print );
-
-#else
 	gtk_init (&argc, &argv);
-#endif
+
 	gint i;
 	gboolean onlyshowdict=FALSE;
-#ifdef G_OS_WIN32
-	for (i = 0; i < _argc; i++)
-	{
-		if (_argv[i][0] == '-')
-		{
-			/* is an option */
-			if (strcmp(_argv[i], "-d") == 0)
-			{
-				onlyshowdict=TRUE;
-			}
-		}
-	}
-#else
+
 	for (i = 1; i < argc; i++)
 	{
 		if (argv[i][0] == '-')
@@ -1872,15 +1765,14 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-#endif
+
 	g_pReciteWord = new CReciteWord;
 	Skin = new struct _Skin;
 	if (conf_load_user (onlyshowdict))
 	{
-#ifdef G_OS_WIN32
-#else
+
 		g_print("%s","load setting error!");
-#endif
+
 		gdk_notify_startup_complete ();
 		delete Skin;
 		delete g_pReciteWord;

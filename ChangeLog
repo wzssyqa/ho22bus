@@ -1,3 +1,9 @@
+2010-09-30 reciteword-0.8.4.2
+	Change name to ho22bus.
+	* use GtkAboutDialog now.
+	* use xdg-open to view doc (html format).
+	* If there is no RealPeopleTTS,then use espeak.
+
 2010-09-26 reciteword-0.8.4.1
 	YunQiang Su <wzssyqa@gmail.com> adoption it.
 	* replace esound with aplay (done by Aron Xu).

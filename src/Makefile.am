@@ -1,21 +1,19 @@
 ## Process this file with automake to produce Makefile.in
 SUBDIRS= tools modules skins win32
 
-bin_PROGRAMS = reciteword
+bin_PROGRAMS = ho22bus
 
 INCLUDES =							\
-	$(RECITEWORD_CFLAGS)						\
-	-DRECITEWORD_DATA_DIR=\""$(datadir)/reciteword"\"		\
-	-DRECITEWORD_LOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"
+	$(HO22BUS_CFLAGS)						\
+	-DHO22BUS_DATA_DIR=\""$(datadir)/ho22bus"\"		\
+	-DHO22BUS_LOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"
 
-reciteword_LDFLAGS = 
+ho22bus_LDFLAGS = 
 
-reciteword_LDADD = 				\
-	$(RECITEWORD_LIBS)			
+ho22bus_LDADD = 				\
+	$(HO22BUS_LIBS)			
 
-reciteword_SOURCES = 			\
-	about.cpp			\
-	about.h			\
+ho22bus_SOURCES = 			\
 	bookfile.cpp			\
 	bookfile.h			\
 	choosebook.cpp	\

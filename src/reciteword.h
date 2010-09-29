@@ -2,10 +2,10 @@
 #define __RECITEWORD_H__
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "bookfile.h"
 #include "widget.h"
 #include "help.h"
-#include "about.h"
 #include "option.h"
 #include "dict.h"
 #include "choosebook.h"
@@ -83,7 +83,6 @@ class CReciteWord
 	tPixButton about_button;
 
 	CMenu *menu;
-	tAbout *about_window;
 	CDict *dict_window;
 	CHelp *help_window;
 	CRecord *record_window;

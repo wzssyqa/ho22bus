@@ -2,26 +2,26 @@
 
 noinst_PROGRAMS = wordlover bdc wyabdc getBdcSound verifyfile
 
-INCLUDES = $(RECITEWORD_CFLAGS)
+INCLUDES = $(HO22BUS_CFLAGS)
 
 wordlover_LDFLAGS = 
-wordlover_LDADD = $(RECITEWORD_LIBS)
+wordlover_LDADD = $(HO22BUS_LIBS)
 wordlover_SOURCES = wordlover.c
 
 bdc_LDFLAGS = 
-bdc_LDADD = $(RECITEWORD_LIBS)
+bdc_LDADD = $(HO22BUS_LIBS)
 bdc_SOURCES = bdc.c
 
 getBdcSound_LDFLAGS = 
-getBdcSound_LDADD = $(RECITEWORD_LIBS)
+getBdcSound_LDADD = $(HO22BUS_LIBS)
 getBdcSound_SOURCES = getBdcSound.c
 
 wyabdc_LDFLAGS = 
-wyabdc_LDADD = $(RECITEWORD_LIBS)
+wyabdc_LDADD = $(HO22BUS_LIBS)
 wyabdc_SOURCES = wyabdc.c
 
 verifyfile_LDFLAGS =
-verifyfile_LDADD = $(RECITEWORD_LIBS)
+verifyfile_LDADD = $(HO22BUS_LIBS)
 verifyfile_SOURCES = verifyfile.c
 
 
