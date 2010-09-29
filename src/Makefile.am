@@ -32,8 +32,6 @@ ho22bus_SOURCES = 			\
 	firstrecite.h 			\
 	firstrecite_test.cpp 			\
 	firstrecite_test.h 			\
-	help.cpp		\
-	help.h			\
 	intl.h			\
 	mark.cpp		\
 	mark.h			\

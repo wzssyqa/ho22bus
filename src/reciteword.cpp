@@ -1294,7 +1294,6 @@ CReciteWord::CReciteWord ()
 	window = NULL;
 	menu = NULL;
 	dict_window = NULL;
-	help_window = NULL;
 	record_window = NULL;
 	option_window = NULL;
 	choosebook = NULL;
@@ -1319,8 +1318,6 @@ CReciteWord::~CReciteWord ()
 		delete (menu);
 	if (dict_window)
 		delete (dict_window);
-	if (help_window)
-		delete (help_window);
 	if (record_window)
 		delete (record_window);
 	if (option_window)
@@ -1518,8 +1515,6 @@ CReciteWord::destroy ()
 
 	if ((dict_window) && (dict_window->showing))
 		dict_window->close ();
-	if ((help_window) && (help_window->showing))
-		help_window->close ();
 	if ((record_window) && (record_window->showing))
 		record_window->close ();
 	if ((option_window) && (option_window->showing))

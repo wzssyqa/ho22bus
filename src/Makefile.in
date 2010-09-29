@@ -50,13 +50,12 @@ PROGRAMS = $(bin_PROGRAMS)
 am_ho22bus_OBJECTS = bookfile.$(OBJEXT) choosebook.$(OBJEXT) \
 	rwconfig.$(OBJEXT) configfile.$(OBJEXT) chooseword.$(OBJEXT) \
 	collectword.$(OBJEXT) dict.$(OBJEXT) firstrecite.$(OBJEXT) \
-	firstrecite_test.$(OBJEXT) help.$(OBJEXT) mark.$(OBJEXT) \
-	menu.$(OBJEXT) mydict.$(OBJEXT) reciteword.$(OBJEXT) \
-	record.$(OBJEXT) revise.$(OBJEXT) revise_test.$(OBJEXT) \
-	rest.$(OBJEXT) readword.$(OBJEXT) know.$(OBJEXT) \
-	option.$(OBJEXT) shooting.$(OBJEXT) skin.$(OBJEXT) \
-	sound.$(OBJEXT) sndserv.$(OBJEXT) typing.$(OBJEXT) \
-	widget.$(OBJEXT)
+	firstrecite_test.$(OBJEXT) mark.$(OBJEXT) menu.$(OBJEXT) \
+	mydict.$(OBJEXT) reciteword.$(OBJEXT) record.$(OBJEXT) \
+	revise.$(OBJEXT) revise_test.$(OBJEXT) rest.$(OBJEXT) \
+	readword.$(OBJEXT) know.$(OBJEXT) option.$(OBJEXT) \
+	shooting.$(OBJEXT) skin.$(OBJEXT) sound.$(OBJEXT) \
+	sndserv.$(OBJEXT) typing.$(OBJEXT) widget.$(OBJEXT)
 ho22bus_OBJECTS = $(am_ho22bus_OBJECTS)
 am__DEPENDENCIES_1 =
 ho22bus_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -302,8 +301,6 @@ ho22bus_SOURCES = \
 	firstrecite.h 			\
 	firstrecite_test.cpp 			\
 	firstrecite_test.h 			\
-	help.cpp		\
-	help.h			\
 	intl.h			\
 	mark.cpp		\
 	mark.h			\
@@ -435,7 +432,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dict.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/firstrecite.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/firstrecite_test.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/help.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/know.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mark.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/menu.Po@am__quote@

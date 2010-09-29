@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include "bookfile.h"
 #include "widget.h"
-#include "help.h"
 #include "option.h"
 #include "dict.h"
 #include "choosebook.h"
@@ -84,7 +83,6 @@ class CReciteWord
 
 	CMenu *menu;
 	CDict *dict_window;
-	CHelp *help_window;
 	CRecord *record_window;
 	COption *option_window;
 	
