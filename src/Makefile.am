@@ -1,11 +1,11 @@
 ## Process this file with automake to produce Makefile.in
 SUBDIRS= tools modules skins win32
 
-bin_PROGRAMS = ho22bus
+bin_PROGRAMS = $(PROGRAM_NAME)
 
 INCLUDES =							\
 	$(HO22BUS_CFLAGS)						\
-	-DHO22BUS_DATA_DIR=\""$(datadir)/ho22bus"\"		\
+	-DHO22BUS_DATA_DIR=\""$(datadir)/$(PROGRAM_NAME)"\"		\
 	-DHO22BUS_LOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"
 
 ho22bus_LDFLAGS = 

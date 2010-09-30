@@ -23,41 +23,14 @@ conf_init ()
 	struct stat st;
 	gchar *rw_dir;
 
-#ifdef G_OS_WIN32
-	FILE *file;
-	rw_dir = g_build_filename(reciteword_data_dir, "users", NULL);
-	if (stat (rw_dir, &st))
-		mkdir (rw_dir);
-	g_free(rw_dir);
-	rw_dir = g_build_filename(reciteword_data_dir, "users", "default", NULL);
-	if (stat (rw_dir, &st))
-		mkdir (rw_dir);
-	g_free(rw_dir);
-	rw_dir = g_build_filename(reciteword_data_dir, "users", "default", "books", NULL);
-	if (stat (rw_dir, &st))
-		mkdir (rw_dir);
-	g_free(rw_dir);
-	rw_dir = g_build_filename(reciteword_data_dir, "users", "reciteword.cfg", NULL);
-	if (stat (rw_dir, &st))
-	{
-		if ((file = fopen (rw_dir, "wb")) == NULL) {
-			g_free(rw_dir);
-			return;
-		}
-		fprintf (file, "[reciteword]\nuser=default\n");	
-		fclose (file);
-	}
-	g_free(rw_dir);
-#else
-	rw_dir = g_strdup_printf("%s/.reciteword", g_get_home_dir());
+	rw_dir = g_strdup_printf("%s/.%s", g_get_home_dir(),PACKAGE);
 	if (stat (rw_dir, &st))
 		mkdir (rw_dir,00755);
 	g_free(rw_dir);
-	rw_dir = g_strdup_printf("%s/.reciteword/books",g_get_home_dir());
+	rw_dir = g_strdup_printf("%s/.%s/books",g_get_home_dir(),PACKAGE);
 	if (stat (rw_dir, &st))
 		mkdir (rw_dir,00755);
 	g_free(rw_dir);
-#endif
 }
 
 static void
@@ -70,12 +43,9 @@ user_init (gchar * user_file)
 		if ((file = fopen (user_file, "wb")) == NULL)
 			return;
 		fprintf (file,"[reciteword]\nskin=" DEFAULT_SKIN_DIR "\n");
-#ifdef G_OS_WIN32
-		//This is the default font setting for Windows, change it to fit your locale.
-		fprintf (file, _("use_custom_font=1\nnormal_english_font=Sans 9\nbig_english_font=Sans 20\nlocal_language_font=Sans 10\n"));
-#else
+
 		fprintf (file,"use_custom_font=1\nnormal_english_font=Monospace 10\nbig_english_font=Monospace 20\n");
-#endif		
+	
 		fprintf (file,"[chooseword]\ndisorder=1\n");
 		fprintf (file,"[dict]\nrtsearch=1\nreadword=1\n");
 		fprintf (file,"[firstrecite_group]\ndisorder=1\n");
@@ -97,30 +67,8 @@ conf_load_user (gboolean onlyshowdict)
 	gchar *filename;
 
 	conf_init ();
-#ifdef G_OS_WIN32
-	ConfigFile *cfgfile;	
-	filename = g_build_filename(reciteword_data_dir, "users", "reciteword.cfg", NULL);
-	cfgfile = rw_cfg_open_file (filename);
-	g_free(filename);
-	if (!cfgfile)
-	{
-		//g_print ("load users"G_DIR_SEPARATOR_S"reciteword.cfg file error\n");		
-		return TRUE;
-	}
-	if (rw_cfg_read_string (cfgfile, "reciteword", "user", &ab))
-	{
-		filename = g_build_filename(reciteword_data_dir, "users", ab, NULL);
-		g_free (ab);
-	}
-	else
-	{
-		filename = g_build_filename(reciteword_data_dir, "users", "default", NULL);
-	}
-	rw_cfg_free (cfgfile);
-	g_free (cfgfile);
-#else
-	filename = g_strdup_printf("%s/.reciteword",g_get_home_dir());
-#endif
+
+	filename = g_strdup_printf("%s/.%s",g_get_home_dir(),PACKAGE);
 
 	strcpy(g_pReciteWord->userpath,filename); //set the reciteword user's path.	
 	g_free(filename);
@@ -131,24 +79,9 @@ conf_load_user (gboolean onlyshowdict)
 	usercfgfile = rw_cfg_open_file (str);
 	if (!usercfgfile)
 	{
-#ifdef G_OS_WIN32
-#else
 		g_print ("load file \"%s\" error!\n", str);
-#endif
 		return TRUE;
 	}
-
-//	if (rw_cfg_read_string (usercfgfile, "reciteword", "skin", &ab))
-//	{
-//		strcpy (str, ab);
-//		g_free (ab);
-//		if (str[0] == '\0')
-//			strcpy (str, DEFAULT_SKIN_DIR);
-//	}
-//	else
-//	{
-//		strcpy (str, DEFAULT_SKIN_DIR);
-//	}
 	
 	strncpy(str,_("en. Note:translate it to your locale, like en or zh_CN. Only this word."),256);	
 	
@@ -225,10 +158,7 @@ void conf_save_usr ()
 		}
 		else
 		{
-#ifdef G_OS_WIN32
-#else
 			g_print("Write file \"%s\" failed!\n",usercfgfile->cfgfilename);
-#endif
 		}
 	}
 }

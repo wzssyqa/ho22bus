@@ -21,6 +21,12 @@ AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 
 dnl ================================================================
+dnl some var
+dnl ================================================================
+AC_SUBST(PROGRAM_NAME)
+PROGRAM_NAME=ho22bus
+
+dnl ================================================================
 dnl Gettext stuff.
 dnl ================================================================
 GETTEXT_PACKAGE=ho22bus
@@ -29,9 +35,9 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package])
 ALL_LINGUAS="zh_CN"
 AM_GLIB_GNU_GETTEXT
 
-dnl
+dnl ================================================================
 dnl Start of pkg-config checks
-dnl
+dnl ================================================================
 PKG_CHECK_MODULES(HO22BUS, gtk+-2.0 >= 2.2.0 gthread-2.0 >= 2.2.0)
 HO22BUS_LIBS="${HO22BUS_LIBS}"
 HO22BUS_CFLAGS="\

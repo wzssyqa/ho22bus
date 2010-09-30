@@ -154,6 +154,7 @@ POFILES = @POFILES@
 POSUB = @POSUB@
 PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
 PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
+PROGRAM_NAME = @PROGRAM_NAME@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -221,7 +222,7 @@ EXTRA_DIST = about.png collectword.png face.png help.png rest.png revise_skimr.p
 	choosebookr.png dict.png groupr.png knowr.png revise_groupr.png shooting.png test.png \
 	chooseword.png dictr.png gtkrc revise_skim.png shootingr.png testr.png mark.png markr.png
 
-skinrwdir = $(datadir)/ho22bus/skins/en
+skinrwdir = $(datadir)/$(PROGRAM_NAME)/skins/en
 skinrw_DATA = $(EXTRA_DIST)
 all: all-am
 
