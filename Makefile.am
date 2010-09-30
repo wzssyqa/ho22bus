@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = po src doc spec books
+SUBDIRS = po src doc spec
 
 desktopdir = $(datadir)/applications
 desktop_DATA = ho22bus.desktop rwdict.desktop
