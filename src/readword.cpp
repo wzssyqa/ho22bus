@@ -21,18 +21,26 @@ void Cwyabdc::read(const char *word,PLAY_METHOD method)
 		lowerword[i]= g_ascii_tolower(word[i]);
 	lowerword[n] = '\0';
 		
-	gchar *tmpfn = g_strdup_printf("%c/%s.wav", lowerword[0],lowerword);
-	gchar *filename=g_build_filename(reciteword_data_dir,"TTS",tmpfn,NULL);
-	g_free(tmpfn);	
+	gchar *tmpfn = g_strdup_printf("%c/%s.wav", lowerword[0],lowerword);	
+	gchar *fnsysw=g_build_filename(reciteword_data_dir,"TTS",tmpfn,NULL);
 	
-	if (g_file_test(filename, G_FILE_TEST_EXISTS))
-		play_file (filename,method);
+	gchar *confdir=g_strdup_printf(".%s",PACKAGE);
+	gchar *fnuserw=g_build_filename(g_get_home_dir(),confdir,"TTS",tmpfn,NULL);
+	
+	g_free(tmpfn);
+	g_free(confdir);
+	
+	if (g_file_test(fnuserw, G_FILE_TEST_EXISTS))
+		play_file (fnuserw,method);
+	else if(g_file_test(fnsysw, G_FILE_TEST_EXISTS))
+		play_file (fnsysw,method);
 	else{
 		gchar *cmd = g_strdup_printf("espeak %s",lowerword);
 		system(cmd);
 		g_free(cmd);
 	}
-	g_free(filename);
+	g_free(fnsysw);
+	g_free(fnuserw);
 	g_free(lowerword);
 }
 

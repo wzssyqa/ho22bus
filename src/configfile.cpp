@@ -45,13 +45,7 @@ rw_cfg_open_file (gchar * filename)
 
 	buffer = (gchar *)g_malloc (stats.st_size + 1);
 	fread (buffer, 1, stats.st_size, file);
-/*	if (fread (buffer, 1, stats.st_size, file) != stats.st_size)
-	{
-		g_free (buffer);
-		fclose (file);
-		return NULL;
-	}
-*/
+
 	fclose (file);
 	buffer[stats.st_size] = '\0';
 
