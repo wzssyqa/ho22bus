@@ -9,4 +9,4 @@ pixmap_DATA = ho22bus.png rwdict.png
 
 EXTRA_DIST = autogen.sh ho22bus.desktop rwdict.desktop ho22bus.png rwdict.png \
 	intltool-extract.in intltool-merge.in intltool-update.in \
-	README.win32 readme.txt
+	readme.txt
