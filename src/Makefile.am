@@ -47,8 +47,6 @@ ho22bus_SOURCES = 			\
 	revise.h		\
 	revise_test.cpp	\
 	revise_test.h	\
-	rest.cpp		\
-	rest.h			\
 	readword.cpp		\
 	readword.h		\
 	know.cpp		\

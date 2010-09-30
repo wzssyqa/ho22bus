@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: reciteword-0.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-30 22:12+0800\n"
+"POT-Creation-Date: 2010-10-01 01:55+0800\n"
 "PO-Revision-Date: 2010-09-26 03:03+0800\n"
 "Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -115,7 +115,7 @@ msgstr "复习-再现"
 msgid "Sound"
 msgstr "声音"
 
-#: ../src/option.cpp:77 ../src/reciteword.cpp:1349
+#: ../src/option.cpp:77 ../src/reciteword.cpp:1310
 msgid "ReciteWord"
 msgstr "背单词"
 
@@ -275,6 +275,10 @@ msgstr "类别(_E)"
 #: ../src/option.cpp:894
 msgid "Preferences"
 msgstr "选项"
+
+#: ../src/reciteword.cpp:211
+msgid "Not implement yet!"
+msgstr ""
 
 #: ../src/record.cpp:71
 msgid "Record"

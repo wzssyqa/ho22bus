@@ -52,11 +52,10 @@ am_ho22bus_OBJECTS = bookfile.$(OBJEXT) choosebook.$(OBJEXT) \
 	collectword.$(OBJEXT) dict.$(OBJEXT) firstrecite.$(OBJEXT) \
 	firstrecite_test.$(OBJEXT) mark.$(OBJEXT) menu.$(OBJEXT) \
 	mydict.$(OBJEXT) reciteword.$(OBJEXT) record.$(OBJEXT) \
-	revise.$(OBJEXT) revise_test.$(OBJEXT) rest.$(OBJEXT) \
-	readword.$(OBJEXT) know.$(OBJEXT) option.$(OBJEXT) \
-	shooting.$(OBJEXT) skin.$(OBJEXT) sound.$(OBJEXT) \
-	sndserv.$(OBJEXT) typing.$(OBJEXT) widget.$(OBJEXT) \
-	winform.$(OBJEXT)
+	revise.$(OBJEXT) revise_test.$(OBJEXT) readword.$(OBJEXT) \
+	know.$(OBJEXT) option.$(OBJEXT) shooting.$(OBJEXT) \
+	skin.$(OBJEXT) sound.$(OBJEXT) sndserv.$(OBJEXT) \
+	typing.$(OBJEXT) widget.$(OBJEXT) winform.$(OBJEXT)
 ho22bus_OBJECTS = $(am_ho22bus_OBJECTS)
 am__DEPENDENCIES_1 =
 ho22bus_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -318,8 +317,6 @@ ho22bus_SOURCES = \
 	revise.h		\
 	revise_test.cpp	\
 	revise_test.h	\
-	rest.cpp		\
-	rest.h			\
 	readword.cpp		\
 	readword.h		\
 	know.cpp		\
@@ -444,7 +441,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/readword.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/reciteword.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/record.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/revise.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/revise_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rwconfig.Po@am__quote@

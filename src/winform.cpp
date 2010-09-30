@@ -2,6 +2,7 @@
 #  include "config.h"
 #endif
 
+#include <glib.h>
 #include "reciteword.h"
 #include "winform.h"
 
@@ -19,17 +20,18 @@ void ho22bus_show_about(void){
 		 NULL
 		};
 
-	const gchar *artists[]={NULL};
+	const gchar *artists[]={"Bu Weiming <buweiming@163.com>",NULL};
 	const gchar *documenters[]={NULL};
 	const gchar *comments=NULL;
 	const gchar *copyright=N_("Copyright Contributors of h022bus");
 	const gchar *license="GPLv3";
-	const gchar *logo_icon_name=NULL;
+	const gchar *logo_icon_name=PACKAGE;
 	const gchar *program_name=PACKAGE;
 	const gchar *translator_credits=N_("translator-credits");
 	const gchar *version=VERSION;
 	const gchar *website=PACKAGE_URL;
 	
+	g_print("%s\n",logo_icon_name);
 
 	gtk_show_about_dialog(NULL,
 			"authors", authors,

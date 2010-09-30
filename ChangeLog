@@ -1,3 +1,9 @@
+2010-10-1 reciteword-0.8.5
+	remove something that may have IP problem.
+	* make new logos.
+	* delete 4 images.
+	* delete some help files.
+
 2010-09-30 reciteword-0.8.4.2
 	Change name to ho22bus.
 	* use GtkAboutDialog now.

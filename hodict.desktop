@@ -1,12 +1,13 @@
+
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Name=RWDict
-Name[zh_CN]=词典
-Comment=ReciteWord's Dict
+Name=HODict
+Name[zh_CN]=hodict.desktop
+Comment=Ho22bus's Dict
 Comment[zh_CN]=黑客背单词的词典
 Exec=ho22bus -d
 Terminal=false
-Icon=rwdict.png
+Icon=hodict.png
 StartupNotify=true
 Categories=Utility;Dictionary;

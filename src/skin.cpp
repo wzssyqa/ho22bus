@@ -588,12 +588,6 @@ skin_load_info (gchar * skin_dir)
 	skin_read_info_pixmap_2 (cfgfile, "test", "dialog_ok_button",
 				 &(Skin->test.dialog_ok_button));
 
-// about
-	skin_read_info_pixmap_1 (cfgfile, "about", "about",
-				 &(Skin->about.about));
-	skin_read_info_pixmap_2 (cfgfile, "about", "exit_button",
-				 &(Skin->about.exit_button));
-
 // dict
 	skin_read_info_pixmap_1 (cfgfile, "dict", "dict", &(Skin->dict.dict));
 	skin_read_info_pixbuf_1 (cfgfile, "dict", "icon", &(Skin->dict.icon));
@@ -617,36 +611,7 @@ skin_load_info (gchar * skin_dir)
 				 &(Skin->dict.wordlist_dict_label[0]));
 	skin_read_info_widget_1 (cfgfile, "dict", "wordlist_dict_label[1]",
 				 &(Skin->dict.wordlist_dict_label[1]));
-	//skin_read_info_widget_1(cfgfile,"dict","wordlist_dict_label[2]", &(Skin->dict.wordlist_dict_label[2]));
-	//skin_read_info_widget_1(cfgfile,"dict","wordlist_dict_label[3]", &(Skin->dict.wordlist_dict_label[3]));
-	//skin_read_info_widget_1(cfgfile,"dict","wordlist_dict_label[4]", &(Skin->dict.wordlist_dict_label[4]));
-	//skin_read_info_widget_1(cfgfile,"dict","wordlist_dict_label[5]", &(Skin->dict.wordlist_dict_label[5]));
-	//skin_read_info_widget_1(cfgfile,"dict","wordlist_dict_label[6]", &(Skin->dict.wordlist_dict_label[6]));
-	//skin_read_info_widget_1(cfgfile,"dict","wordlist_dict_label[7]", &(Skin->dict.wordlist_dict_label[7]));
-	//skin_read_info_widget_1(cfgfile,"dict","wordlist_dict_label[8]", &(Skin->dict.wordlist_dict_label[8]));
-	//skin_read_info_pixmap_4(cfgfile,"dict","ying_button",&(Skin->dict.ying_button));
-	//skin_read_info_pixmap_4(cfgfile,"dict","han_button",&(Skin->dict.han_button));
 
-// help
-	skin_read_info_pixmap_1 (cfgfile, "help", "help",
-				 &(Skin->help.help));
-	skin_read_info_pixmap_1 (cfgfile, "help", "text_area", &(Skin->help.text_area));
-	skin_read_info_pixmap_2 (cfgfile, "help", "exit_button",
-				 &(Skin->help.exit_button));
-	skin_read_info_widget_2 (cfgfile, "help", "wordlist_vscroll", &(Skin->help.wordlist_vscroll));
-	skin_read_info_pixmap_2 (cfgfile, "help", "overview_robutton", &(Skin->help.overview_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "firstrecite_robutton", &(Skin->help.firstrecite_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "revise_robutton", &(Skin->help.revise_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "shooting_robutton", &(Skin->help.shooting_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "hearing_robutton", &(Skin->help.hearing_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "typing_robutton", &(Skin->help.typing_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "rest_robutton", &(Skin->help.rest_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "choosebook_robutton", &(Skin->help.choosebook_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "filling_robutton", &(Skin->help.filling_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "know_robutton", &(Skin->help.know_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "wordedit_robutton", &(Skin->help.wordedit_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "bookedit_robutton", &(Skin->help.bookedit_robutton));
-	skin_read_info_pixmap_2 (cfgfile, "help", "sentence_robutton", &(Skin->help.sentence_robutton));
 
 // record
 	skin_read_info_pixmap_1 (cfgfile, "record", "record",
@@ -861,21 +826,6 @@ skin_load_info (gchar * skin_dir)
 				 &(Skin->revise_skim.meaning_ckbutton));
 	skin_read_info_pixmap_4 (cfgfile, "revise_skim", "animate_ckbutton",
 				 &(Skin->revise_skim.animate_ckbutton));
-				 
-
-// rest
-	skin_read_info_pixmap_1 (cfgfile, "rest", "rest",
-				 &(Skin->rest.rest));
-	skin_read_info_pixmap_3 (cfgfile, "rest", "start_button",
-				 &(Skin->rest.start_button));
-	skin_read_info_pixmap_4 (cfgfile, "rest", "stop_button",
-				 &(Skin->rest.stop_button));
-	skin_read_info_pixmap_4 (cfgfile, "rest", "pause_button",
-				 &(Skin->rest.pause_button));
-	skin_read_info_pixmap_3 (cfgfile, "rest", "continue_button",
-				 &(Skin->rest.continue_button));
-	skin_read_info_pixmap_3 (cfgfile, "rest", "return_button",
-				 &(Skin->rest.return_button));
 
 // know
 	skin_read_info_pixmap_1 (cfgfile, "know", "know",
@@ -1294,27 +1244,6 @@ skin_load_face (GtkWidget * window)
 }
 
 void
-skin_load_about (GtkWidget * window)
-{
-	static int loaded = 0;
-	if (loaded)
-		return;
-	loaded = 1;
-
-	GdkPixbuf *tmp_pixbuf;
-	gchar skin_file[256];
-	
-	sprintf (skin_file, "%s/about.png", Skin->dir);
-	tmp_pixbuf = gdk_pixbuf_new_from_file (skin_file, NULL);
-	skin_load_pixmap_1 (window, tmp_pixbuf, &(Skin->about.about));
-	g_object_unref (tmp_pixbuf);
-	sprintf (skin_file, "%s/aboutr.png", Skin->dir);
-	tmp_pixbuf = gdk_pixbuf_new_from_file (skin_file, NULL);
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->about.exit_button));
-	g_object_unref (tmp_pixbuf);
-}
-
-void
 skin_load_dict (GtkWidget * window)
 {
 	static int loaded = 0;
@@ -1346,39 +1275,6 @@ skin_load_dict (GtkWidget * window)
 
 }
 
-void
-skin_load_help (GtkWidget * window)
-{
-	static int loaded = 0;
-	if (loaded)
-		return;
-	loaded = 1;
-
-	GdkPixbuf *tmp_pixbuf;
-	gchar skin_file[256];
-	sprintf (skin_file, "%s/help.png", Skin->dir);
-	tmp_pixbuf = gdk_pixbuf_new_from_file (skin_file, NULL);
-	skin_load_pixmap_1 (window, tmp_pixbuf, &(Skin->help.help));
-	skin_load_pixmap_1 (window, tmp_pixbuf, &(Skin->help.text_area));
-	g_object_unref (tmp_pixbuf);
-	sprintf (skin_file, "%s/helpr.png", Skin->dir);
-	tmp_pixbuf = gdk_pixbuf_new_from_file (skin_file, NULL);
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.exit_button));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.overview_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.firstrecite_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.revise_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.shooting_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.hearing_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.typing_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.rest_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.choosebook_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.filling_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.know_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.wordedit_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.bookedit_robutton));
-	skin_load_pixmap_2 (window, tmp_pixbuf, &(Skin->help.sentence_robutton));
-	g_object_unref (tmp_pixbuf);
-}
 
 void
 skin_load_record (GtkWidget * window)
@@ -1764,38 +1660,6 @@ skin_load_revise_skim (GtkWidget * window)
 	g_object_unref (tmp_pixbuf);
 }
 
-void
-skin_load_rest (GtkWidget * window)
-{
-	static int loaded = 0;
-	if (loaded)
-		return;
-	loaded = 1;
-
-
-	GdkPixbuf *tmp_pixbuf;
-	gchar skin_file[256];
-
-	sprintf (skin_file, "%s/rest.png", Skin->dir);
-	tmp_pixbuf = gdk_pixbuf_new_from_file (skin_file, NULL);
-	skin_load_pixmap_1 (window, tmp_pixbuf,
-			    &(Skin->rest.rest));
-	g_object_unref (tmp_pixbuf);
-
-	sprintf (skin_file, "%s/restr.png", Skin->dir);
-	tmp_pixbuf = gdk_pixbuf_new_from_file (skin_file, NULL);
-	skin_load_pixmap_3 (window, tmp_pixbuf,
-			    &(Skin->rest.start_button));
-	skin_load_pixmap_4 (window, tmp_pixbuf,
-			    &(Skin->rest.stop_button));
-	skin_load_pixmap_4 (window, tmp_pixbuf,
-			    &(Skin->rest.pause_button));
-	skin_load_pixmap_3 (window, tmp_pixbuf,
-			    &(Skin->rest.continue_button));
-	skin_load_pixmap_3 (window, tmp_pixbuf,
-			    &(Skin->rest.return_button));
-	g_object_unref (tmp_pixbuf);
-}
 
 void
 skin_load_know (GtkWidget * window)

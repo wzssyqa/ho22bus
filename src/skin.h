@@ -120,11 +120,6 @@ struct _Skin_face
 		rest_button,know_button,shooting_button, typing_button;
 };
 
-struct _Skin_about
-{
-	struct _Skin_pixmap_1 about;
-	struct _Skin_pixmap_2 exit_button;
-};
 
 struct _Skin_dict
 {
@@ -137,15 +132,6 @@ struct _Skin_dict
 	struct _Skin_widget_2 word_vscroll;
 	struct _Skin_widget_1 wordlist_dict_label[2];
 	//struct _Skin_pixmap_4 ying_button,han_button;
-};
-
-struct _Skin_help
-{
-	struct _Skin_pixmap_1 help,text_area;
-	struct _Skin_pixmap_2 exit_button;
-	struct _Skin_pixmap_2 overview_robutton,firstrecite_robutton,revise_robutton,shooting_robutton,hearing_robutton,typing_robutton,rest_robutton,
-	             choosebook_robutton,filling_robutton,know_robutton,wordedit_robutton,bookedit_robutton,sentence_robutton;
-	struct _Skin_widget_2 wordlist_vscroll;
 };
 
 struct _Skin_record
@@ -293,12 +279,6 @@ struct _Skin_revise_skim
 	struct _Skin_widget_2 viewer;
 };
 
-struct _Skin_rest
-{
-	struct _Skin_pixmap_1 rest;
-	struct _Skin_pixmap_3 start_button, return_button, continue_button;
-	struct _Skin_pixmap_4 stop_button, pause_button;
-};
 
 struct _Skin_know
 {
@@ -375,9 +355,7 @@ struct _Skin
 	gchar dir[256];
 	struct _Skin_reciteword reciteword;
 	struct _Skin_face face;
-	struct _Skin_about about;
 	struct _Skin_dict dict;
-	struct _Skin_help help;
 	struct _Skin_record record;
 	struct _Skin_choosebook choosebook;
 	struct _Skin_group group;
@@ -387,7 +365,6 @@ struct _Skin
 	struct _Skin_revise_group revise_group;
 	struct _Skin_revise_test revise_test;
 	struct _Skin_revise_skim revise_skim;
-	struct _Skin_rest rest;
 	struct _Skin_know know;
 	struct _Skin_shooting shooting;
 	struct _Skin_typing typing;
@@ -399,9 +376,7 @@ struct _Skin
 gint skin_load_info (gchar * skin_dir);
 void skin_load_reciteword (GtkWidget * window);
 void skin_load_face (GtkWidget * window);
-void skin_load_about (GtkWidget * window);
 void skin_load_dict (GtkWidget * window);
-void skin_load_help (GtkWidget * window);
 void skin_load_record (GtkWidget * window);
 void skin_load_choosebook (GtkWidget * window);
 void skin_load_group (GtkWidget * window);
@@ -411,7 +386,6 @@ void skin_load_text (GtkWidget * window);
 void skin_load_revise_group (GtkWidget * window);
 void skin_load_revise_test (GtkWidget * window);
 void skin_load_revise_skim (GtkWidget * window);
-void skin_load_rest(GtkWidget * window);
 void skin_load_know(GtkWidget * window);
 void skin_load_shooting (GtkWidget * window);
 void skin_load_typing (GtkWidget * window);

@@ -204,11 +204,14 @@ CReciteWord::ShowRest ()
 {
 	if (!g_pReciteWord->now_book)
 		return;
-	if (!g_pReciteWord->rest)
-	{
-		g_pReciteWord->rest = new CRest;
-	}
-	g_pReciteWord->rest->show ();
+	GtkWidget *dialog = gtk_message_dialog_new (GTK_WINDOW(g_pReciteWord->window),
+                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+                                 GTK_MESSAGE_INFO,
+                                 GTK_BUTTONS_CLOSE,
+                                 _("Not implement yet!")
+                                 );
+	gtk_dialog_run (GTK_DIALOG (dialog));
+	gtk_widget_destroy (dialog);
 }
 
 void
@@ -1160,45 +1163,6 @@ on_mainwnd_key_press_release (GtkWidget * window, GdkEventKey * event ,CReciteWo
 		}
 		break;
 	}
-	case STATUS_REST:
-	{
-		switch (event->keyval)
-		{
-			case GDK_Escape:
-				if (event->type==GDK_KEY_PRESS)
-					g_pReciteWord->rest->return_button.do_clicked ();
-				break;
-			case GDK_s:
-			case GDK_S:
-				if (only_ctrl_pressed)
-				{
-					if (event->type==GDK_KEY_PRESS)
-						g_pReciteWord->rest->start_button.do_clicked ();
-				}
-				else
-					return_val=false;
-				break;
-			case GDK_Pause:
-				if (event->type==GDK_KEY_PRESS)
-						g_pReciteWord->rest->pause_button.do_clicked ();
-				else
-					return_val=false;
-			case GDK_p:
-			case GDK_P:
-				if (only_ctrl_pressed)
-				{
-					if (event->type==GDK_KEY_PRESS)
-						g_pReciteWord->rest->pause_button.do_clicked ();
-				}
-				else
-					return_val=false;
-				break;
-			default:
-				return_val=FALSE;
-				break;
-		}
-		break;
-	}
 	case STATUS_KNOW:
 	{
 		switch (event->keyval)
@@ -1270,7 +1234,6 @@ CReciteWord::CReciteWord ()
 	revise_group = NULL;
 	revise_test = NULL;
 	revise_skim = NULL;
-	rest = NULL;
 	know = NULL;
 	shooting = NULL;
 	typing = NULL;
@@ -1303,8 +1266,6 @@ CReciteWord::~CReciteWord ()
 		delete (revise_test);
 	if (revise_skim)
 		delete (revise_skim);
-	if (rest)
-		delete (rest);
 	if (know)
 		delete (know);
 	if (shooting)
@@ -1449,9 +1410,6 @@ CReciteWord::clean ()
 		break;
 	case STATUS_REVISE_SKIM:
 		g_pReciteWord->revise_skim->close ();
-		break;
-	case STATUS_REST:
-		g_pReciteWord->rest->close ();
 		break;
 	case STATUS_KNOW:
 		g_pReciteWord->know->close ();

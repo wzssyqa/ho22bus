@@ -15,7 +15,6 @@
 #include "record.h"
 #include "revise.h"
 #include "revise_test.h"
-#include "rest.h"
 #include "sndserv.h"
 #include "sound.h"
 #include "know.h"
@@ -94,7 +93,6 @@ class CReciteWord
 	CRevise_group *revise_group;
 	CRevise_test *revise_test;
 	CRevise_skim *revise_skim;
-	CRest *rest;
 	CKnow *know;
 	CShooting *shooting;
 	CTyping *typing;
