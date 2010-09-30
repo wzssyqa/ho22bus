@@ -16652,7 +16652,7 @@ HO22BUS_CFLAGS="\
 
 
 
-ac_config_files="$ac_config_files Makefile po/Makefile.in doc/Makefile spec/Makefile src/Makefile src/tools/Makefile src/modules/Makefile src/skins/Makefile src/skins/en/Makefile src/skins/zh_CN/Makefile src/win32/Makefile src/win32/nsis/Makefile"
+ac_config_files="$ac_config_files Makefile books/Makefile books/ljjy/Makefile po/Makefile.in doc/Makefile spec/Makefile src/Makefile src/tools/Makefile src/modules/Makefile src/skins/Makefile src/skins/en/Makefile src/skins/zh_CN/Makefile src/win32/Makefile src/win32/nsis/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -17748,6 +17748,8 @@ do
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
     "default-1") CONFIG_COMMANDS="$CONFIG_COMMANDS default-1" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+    "books/Makefile") CONFIG_FILES="$CONFIG_FILES books/Makefile" ;;
+    "books/ljjy/Makefile") CONFIG_FILES="$CONFIG_FILES books/ljjy/Makefile" ;;
     "po/Makefile.in") CONFIG_FILES="$CONFIG_FILES po/Makefile.in" ;;
     "doc/Makefile") CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
     "spec/Makefile") CONFIG_FILES="$CONFIG_FILES spec/Makefile" ;;

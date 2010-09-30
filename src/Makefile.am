@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 SUBDIRS= tools modules skins win32
 
-bin_PROGRAMS = $(PROGRAM_NAME)
+bin_PROGRAMS = ho22bus
 
 INCLUDES =							\
 	$(HO22BUS_CFLAGS)						\

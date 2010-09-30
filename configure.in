@@ -53,6 +53,8 @@ dnl ==========================================================================
 
 AC_OUTPUT([
 Makefile
+books/Makefile
+books/ljjy/Makefile
 po/Makefile.in
 doc/Makefile
 spec/Makefile
