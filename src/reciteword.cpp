@@ -36,6 +36,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <cstdlib>
 #include <ctime>
+#include "winform.h"
 
 CReciteWord *g_pReciteWord = NULL;
 struct _Skin *Skin = NULL;
@@ -66,47 +67,13 @@ CReciteWord::PopupOption (gpointer data)
 void
 CReciteWord::PopupHelp (gpointer data)
 {
-	gchar *htindex=g_build_filename(reciteword_data_dir,"../doc",PACKAGE,"index.html",NULL);
-	gchar *cmd=g_strdup_printf("xdg-open %s",htindex);
-	system(cmd);
-	g_free(htindex);
-	g_free(cmd);
+	ho22bus_show_help();
 }
 
 void
 CReciteWord::PopupAbout (gpointer data)
 {
-	const gchar *authors[]={"YunQiang Su <wzssyqa@gmail.com>",
-		 _("forked from reciteword by Hu Zheng http://reciteword.cosoft.org.cn/"),
-		 NULL
-		};
-
-	const gchar *artists[]={NULL};
-	const gchar *documenters[]={NULL};
-	const gchar *comments=NULL;
-	const gchar *copyright=N_("Copyright Contributors of h022bus");
-	const gchar *license="GPLv3";
-	const gchar *logo_icon_name=NULL;
-	const gchar *program_name=PACKAGE;
-	const gchar *translator_credits=N_("translator-credits");
-	const gchar *version=VERSION;
-	const gchar *website=PACKAGE_URL;
-	
-
-	gtk_show_about_dialog(NULL,
-			"authors", authors,
-			"artists", artists,
-			"documenters", documenters,
-			"comments", comments,
-			"copyright", copyright,
-			"license", license,
-			"logo-icon-name", logo_icon_name,
-			"program-name", program_name,
-			"translator-credits", translator_credits,
-			"version", version,
-			"website", website,
-			NULL
-	);
+	ho22bus_show_about();
 }
 
 

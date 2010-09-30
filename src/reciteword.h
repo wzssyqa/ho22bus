@@ -3,6 +3,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <glib/gi18n.h>
 #include "bookfile.h"
 #include "widget.h"
 #include "option.h"

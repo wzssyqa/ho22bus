@@ -55,7 +55,8 @@ am_ho22bus_OBJECTS = bookfile.$(OBJEXT) choosebook.$(OBJEXT) \
 	revise.$(OBJEXT) revise_test.$(OBJEXT) rest.$(OBJEXT) \
 	readword.$(OBJEXT) know.$(OBJEXT) option.$(OBJEXT) \
 	shooting.$(OBJEXT) skin.$(OBJEXT) sound.$(OBJEXT) \
-	sndserv.$(OBJEXT) typing.$(OBJEXT) widget.$(OBJEXT)
+	sndserv.$(OBJEXT) typing.$(OBJEXT) widget.$(OBJEXT) \
+	winform.$(OBJEXT)
 ho22bus_OBJECTS = $(am_ho22bus_OBJECTS)
 am__DEPENDENCIES_1 =
 ho22bus_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -335,7 +336,9 @@ ho22bus_SOURCES = \
 	typing.cpp		\
 	typing.h		\
 	widget.cpp		\
-	widget.h
+	widget.h		\
+	winform.cpp		\
+	winform.h
 
 EXTRA_DIST = 
 all: all-recursive
@@ -451,6 +454,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sound.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/typing.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/widget.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/winform.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

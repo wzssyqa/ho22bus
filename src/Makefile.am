@@ -65,6 +65,8 @@ ho22bus_SOURCES = 			\
 	typing.cpp		\
 	typing.h		\
 	widget.cpp		\
-	widget.h
+	widget.h		\
+	winform.cpp		\
+	winform.h
 
 EXTRA_DIST =

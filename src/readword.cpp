@@ -2,6 +2,10 @@
 #include "reciteword.h"
 #include <cstring>
 
+#ifdef HAVE_CONFIG_H
+#  include "config.h"
+#endif
+
 extern CReciteWord* g_pReciteWord;
 
 
@@ -35,7 +39,7 @@ void Cwyabdc::read(const char *word,PLAY_METHOD method)
 	else if(g_file_test(fnsysw, G_FILE_TEST_EXISTS))
 		play_file (fnsysw,method);
 	else{
-		gchar *cmd = g_strdup_printf("espeak %s",lowerword);
+		gchar *cmd = g_strdup_printf("espeak \"%s\"",lowerword);
 		system(cmd);
 		g_free(cmd);
 	}
