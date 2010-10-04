@@ -3,7 +3,6 @@
 Encoding=UTF-8
 Type=Application
 Name=HODict
-Name[zh_CN]=hodict.desktop
 Comment=Ho22bus's Dict
 Comment[zh_CN]=黑客背单词的词典
 Exec=ho22bus -d
