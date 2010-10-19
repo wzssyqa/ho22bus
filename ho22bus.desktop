@@ -1,10 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Name=Recite Word
-Name[zh_CN]=背单词
+Name=Ho22bus
 Comment=Recite word easily
-Comment[zh_CN]=黑客背单词
 Exec=ho22bus
 Terminal=false
 Icon=ho22bus.png

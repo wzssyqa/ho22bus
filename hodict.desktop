@@ -2,9 +2,9 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Name=HODict
+Name=HoDict
 Comment=Ho22bus's Dict
-Comment[zh_CN]=黑客背单词的词典
+Comment[zh_CN]=Ho22bus 的辞典
 Exec=ho22bus -d
 Terminal=false
 Icon=hodict.png

@@ -1,23 +1,24 @@
-2010-10-1 reciteword-0.8.5
-	remove something that may have IP problem.
+2010-10-1 ho22bus-0.8.5
+	* remove something that may have IP problem.
 	* make new logos.
 	* delete 4 images.
 	* delete some help files.
 
-2010-09-30 reciteword-0.8.4.2
-	Change name to ho22bus.
+2010-09-30 ho22bus-0.8.4.2
+	* Change name to ho22bus.
 	* use GtkAboutDialog now.
 	* use xdg-open to view doc (html format).
 	* If there is no RealPeopleTTS,then use espeak.
 
-2010-09-26 reciteword-0.8.4.1
-	YunQiang Su <wzssyqa@gmail.com> adoption it.
-	* replace esound with aplay (done by Aron Xu).
-	* replace skin to rw(zh_CN) and rw_en(en,default). (legal consideration)
-	  replace old rwdict icon with icon of stardict.
-	  add a translatable string to determine which skin to use.
-	  not using skin in configfile temporarily.
-	* some modify of skin, make it can accept absolute path (for future system wide configfile).
+2010-09-26 ho22bus-0.8.4.1
+	* Fork reciteword-0.8.4 by YunQiang Su <wzssyqa@gmail.com>.
+	* Changes:
+	  - replace esound with aplay (done by Aron Xu).
+	  - replace skin to rw(zh_CN) and rw_en(en,default). (legal consideration)
+	  - replace old rwdict icon with icon of stardict.
+	  - add a translatable string to determine which skin to use.
+	  - not using skin in configfile temporarily.
+	  - some modify of skin, make it can accept absolute path (for future system wide configfile).
 
 2007-11-28 reciteword-0.8.4 (The past youth)
 	Another maintain version.
