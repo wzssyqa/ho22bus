@@ -8,6 +8,6 @@ pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = ho22bus.png hodict.png
 
 EXTRA_DIST = autogen.sh ho22bus.desktop hodict.desktop ho22bus.png hodict.png \
-	intltool-extract.in intltool-merge.in intltool-update.in
+	intltool-extract.in intltool-merge.in intltool-update.in ho22bus.1
 
 man1_MANS = ho22bus.1
