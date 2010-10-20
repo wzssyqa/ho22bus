@@ -12,27 +12,14 @@ sudo make install
 ####
 Run the program:
 ####
-reciteword &
-reciteword -d &   // only run dict.
+ho22bus &
+ho22bus -d &   // only run dict.
 
 
 ####
-To install books
+To install books and TTS sound files
 ####
 
-tar -xjvf reciteword-books-*.tar.bz2
-mv books /usr/share/reciteword/
-
-####
-To install dict data files
-####
-
-tar -xjvf reciteword-dicts-*.tar.bz2
-mv dicts /usr/share/reciteword/
-
-####
-To install WyabdcRealPeopleTTS
-####
-
-tar -xjvf WyabdcRealPeopleTTS.tar.bz2
-mv WyabdcRealPeopleTTS /usr/share
+Copy these files to ~/.ho22bus/books and ~/.ho22bus/TTS
+       or prefix/share/ho22bus/books and prefix/share/ho22bus/TTS
+See also ho22bus(1) .
