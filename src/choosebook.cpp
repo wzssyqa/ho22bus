@@ -53,35 +53,6 @@ static void on_choosebook_return_clicked()
 	g_pReciteWord->show();
 }
 
-/*static gboolean
-tree_selection_func(GtkTreeSelection *selection,
-                                             GtkTreeModel *model,
-                                             GtkTreePath *path,
-                                             gboolean path_currently_selected,
-                                             gpointer data)
-{	
-	  if (path_currently_selected)
-	  {
-		  CChoosebook *parent= (CChoosebook *)data;
-		  GtkTreeIter iter;
-		  gtk_tree_model_get_iter(model,&iter,path);
-		  gchar *dir;
-		       gtk_tree_model_get (model, &iter,
-                          2, &dir,
-                          -1);
-		  GtkListStore *list_store=GTK_LIST_STORE(gtk_tree_view_get_model(GTK_TREE_VIEW(parent->list_view)));
-		  gtk_list_store_clear(list_store);
-		  parent->book_count=0;
-		  parent->add_to_list(dir,list_store);
-		  gchar aa[5];
-		  sprintf(aa,"%d",parent->book_count);
-		  gtk_label_set_text(GTK_LABEL(parent->book_count_label),aa);
-		  g_free(dir);
-	  }
-	  return true;
-}*/
-
-
 static void
 on_choosebook_tree_selection_changed(GtkTreeSelection *selection,CChoosebook *parent)
 {
@@ -161,49 +132,7 @@ on_choosebook_list_selection_changed(GtkTreeSelection *selection,CChoosebook *pa
 	  }
 }
 
-/*
-static gboolean
-on_choosebook_tree_button_press(GtkWidget * widget, GdkEventButton * event,
-			   CChoosebook * parent)
-{
-	if ((event->type==GDK_BUTTON_PRESS)&&(event->window==gtk_tree_view_get_bin_window(GTK_TREE_VIEW(parent->tree_view))))
-	{
-		GtkTreePath *path;
-		if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(parent->tree_view),(gint) event->x,(gint)event->y,&path,NULL,NULL,NULL))
-		{
-			GtkTreeModel *model=gtk_tree_view_get_model(GTK_TREE_VIEW(parent->tree_view));
-			GtkTreeIter iter;
-			gtk_tree_model_get_iter(model,&iter,path);
-			gtk_tree_path_free(path);
-			gchar *dir;
-			
-			gtk_tree_model_get (model, &iter,
-                          2, &dir,
-                          -1);
-			printf("%s\n",dir);
-			if (strcmp(dir,parent->nowdir)==0)
-			{
-				g_free(dir);
-				return false;
-			}
-			strcpy(parent->nowdir,dir);
-		  GtkListStore *list_store=GTK_LIST_STORE(gtk_tree_view_get_model(GTK_TREE_VIEW(parent->list_view)));
-		  gtk_list_store_clear(list_store);
-		  parent->book_count=0;
-		  parent->add_to_list(dir,list_store);
-		  gchar aa[5];
-		  sprintf(aa,"%d",parent->book_count);
-		  gtk_label_set_text(GTK_LABEL(parent->book_count_label),aa);
-		  g_free(dir);
-		}
-		return false;
-	}
-	else
-	{
-		return false;
-	}
-}
-*/
+
 
 static gboolean
 on_choosebook_list_button_press(GtkWidget * widget, GdkEventButton * event,
@@ -406,22 +335,7 @@ CChoosebook::create_tree()
 	tree_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (model));
 	gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (tree_view), TRUE);
 	g_object_unref (model);
-	
-	
-	/*GtkTreeViewColumn *column;
-	GtkCellRenderer *cell_renderer;
-	     column = gtk_tree_view_column_new ();
 
-      cell_renderer = gtk_cell_renderer_pixbuf_new ();
-      gtk_tree_view_column_pack_start (column,
-				       cell_renderer,
-				       FALSE);
-      cell_renderer = gtk_cell_renderer_text_new ();
-      gtk_tree_view_column_pack_start (column,
-				       cell_renderer,
-				       TRUE);
-      gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view),
-				   column);*/
 				   
 	GtkCellRenderer *renderer_image;
 	GtkCellRenderer *renderer_text;
@@ -440,13 +354,7 @@ CChoosebook::create_tree()
                                      renderer_text,
                                      "text",1);
 	gtk_tree_view_insert_column(GTK_TREE_VIEW(tree_view),column,-1);
-/*	col_offset = gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (tree_view),
-							    -1, "Folder",
-							    renderer, "text",
-							    0,
-							    NULL);
-	  column = gtk_tree_view_get_column (GTK_TREE_VIEW (tree_view), col_offset - 1);*/
-	  //gtk_tree_view_column_set_visible(GTK_TREE_VIEW_COLUMN (column), FALSE);
+
 	  gtk_tree_view_column_set_clickable (column, TRUE);
 	      
 	GtkTreeSelection *selection;
@@ -459,10 +367,7 @@ CChoosebook::create_tree()
 			G_CALLBACK (on_choosebook_tree_selection_changed),
 			this);
 
-	/*g_signal_connect (G_OBJECT (tree_view),
-			"button_press_event",
-			G_CALLBACK (on_choosebook_tree_button_press),
-			this);*/
+
 	
 	sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_set_size_request(sw,Skin->choosebook.book_tree.w,Skin->choosebook.book_tree.h);

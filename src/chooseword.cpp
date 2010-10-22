@@ -80,33 +80,7 @@ on_chooseword_ok_clicked (gpointer data)
 			return;
 		}
 		
-		/*gint i, tmpint, last_zu_wordcount = 25, now_wordcount = 0;
-		gchar tmpstr[256];
-		for (i = 0; i <= zu_index; i++)
-		{
-			sprintf (tmpstr, "zu%d_wordcount", i);
-			if (rw_cfg_read_int
-			    (usercfgfile,
-			     g_pReciteWord->now_book->bookfilename, tmpstr,
-			     &tmpint))
-				last_zu_wordcount = tmpint;
-			now_wordcount += last_zu_wordcount;
-		}
-		now_wordcount -= last_zu_wordcount;
-		if (zu_index==parent->total_zucount-1)
-		{
-			last_zu_wordcount=g_pReciteWord->now_book->wordcount-now_wordcount;
-		}
 
-		g_pReciteWord->now_zu_index = zu_index;
-		g_pReciteWord->now_zu_wordcount = last_zu_wordcount;
-		g_pReciteWord->now_zu_words.w =
-			g_pReciteWord->now_book->words.w + now_wordcount;
-		g_pReciteWord->now_zu_words.t =
-			g_pReciteWord->now_book->words.t + now_wordcount;
-		g_pReciteWord->now_zu_words.m =
-			g_pReciteWord->now_book->words.m + now_wordcount;
-		*/
 		g_pReciteWord->chooseword->last_scope_start = g_pReciteWord->chooseword->scope_start;
 		g_pReciteWord->chooseword->last_scope_count = g_pReciteWord->chooseword->scope_count;
 		g_pReciteWord->set_now_zu_words(zu_index,g_pReciteWord->chooseword->scope_count,

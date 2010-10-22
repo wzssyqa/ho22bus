@@ -40,11 +40,6 @@ on_group_ok_clicked (gpointer data)
 			tmpint = 25;
 		if (g_pReciteWord->firstrecite_group->zu_wordcount != tmpint)
 		{
-#ifdef G_OS_WIN32
-#else
-			g_print ("it is better not change old record\n");
-#endif
-
 			//ask,if sure then clean the afterward's record
 			return; //it is better not change old record.
 		}
