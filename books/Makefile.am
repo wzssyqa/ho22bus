@@ -1,0 +1,2 @@
+SUBDIRS= ho22bus
+EXTRA_DIST =

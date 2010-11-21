@@ -1,5 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-SUBDIRS= tools modules skins win32
+SUBDIRS= modules skins win32
 
 bin_PROGRAMS = ho22bus
 

@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.52)
 
-AC_INIT(ho22bus, 0.8.5, http://code.google.com/p/ho22bus)
+AC_INIT(ho22bus, 0.8.6, http://code.google.com/p/ho22bus)
 AC_CONFIG_SRCDIR(src/reciteword.cpp)
 AM_INIT_AUTOMAKE([dist-bzip2])
 
@@ -53,11 +53,12 @@ dnl ==========================================================================
 
 AC_OUTPUT([
 Makefile
+books/Makefile
+books/ho22bus/Makefile
 po/Makefile.in
 doc/Makefile
 spec/Makefile
 src/Makefile
-src/tools/Makefile
 src/modules/Makefile
 src/skins/Makefile
 src/skins/en/Makefile

@@ -273,7 +273,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = tools modules skins win32
+SUBDIRS = modules skins win32
 INCLUDES = \
 	$(HO22BUS_CFLAGS)						\
 	-DHO22BUS_DATA_DIR=\""$(datadir)/$(PROGRAM_NAME)"\"		\
