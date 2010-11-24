@@ -4,21 +4,36 @@
 #include <gtk/gtk.h>
 #include "widget.h"
 
+class CMenuButton
+{
+     public:
+	GtkWidget *button;
+	void (*runfunc) (const gpointer);
+	gpointer funcdata;
+	void do_clicked();
+	void destroy();
+	
+	CMenuButton();
+	~CMenuButton();
+};
+
 class CMenu
 {
       protected:
-	tPixButton exit_button;
+	CMenuButton quit_button;
 
       public:
 	GtkWidget *fixed;
+	
+	GtkWidget *menu;
 
-	tPixButton2 choosebook_button;
-	tPixButton2 firstrecite_button;
-	tPixButton2 revise_button;
-	tPixButton2 rest_button;
-	tPixButton2 know_button;
-	tPixButton2 shooting_button;
-	tPixButton2 typing_button;
+	CMenuButton choosebook_button;
+	CMenuButton firstrecite_button;
+	CMenuButton revise_button;
+	CMenuButton rest_button;
+	CMenuButton know_button;
+	CMenuButton shooting_button;
+	CMenuButton typing_button;
 	gboolean re_continue;
 
 

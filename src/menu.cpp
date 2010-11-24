@@ -24,63 +24,92 @@ on_menu_leave_notify (GtkWidget * widget, GdkEventCrossing * event, CMenu * pare
 	return true;
 }
 
-static void on_menu_choosebook_clicked ()
+static void on_menu_choosebook_clicked (gpointer data)
 {
 	g_pReciteWord->menu->close ();
 	g_pReciteWord->clean ();
 	g_pReciteWord->ShowChoosebook ();
 }
 
-static void on_menu_firstrecite_clicked ()
+static void on_menu_firstrecite_clicked (gpointer data)
 {
 	g_pReciteWord->menu->close ();
 	g_pReciteWord->clean ();
 	g_pReciteWord->ShowFirstRecite_group ();
 }
 
-static void on_menu_revise_clicked ()
+static void on_menu_revise_clicked (gpointer data)
 {
 	g_pReciteWord->menu->close ();
 	g_pReciteWord->clean ();
 	g_pReciteWord->ShowRevise_group ();
 }
 
-static void on_menu_rest_clicked ()
+static void on_menu_rest_clicked (gpointer data)
 {
 	g_pReciteWord->menu->close ();
 	g_pReciteWord->clean ();
 	g_pReciteWord->ShowRest ();
 }
 
-static void on_menu_know_clicked ()
+static void on_menu_know_clicked (gpointer data)
 {
 	g_pReciteWord->menu->close ();
 	g_pReciteWord->clean ();
 	g_pReciteWord->ShowKnow ();
 }
 
-static void on_menu_shooting_clicked ()
+static void on_menu_shooting_clicked (gpointer data)
 {
 	g_pReciteWord->menu->close ();
 	g_pReciteWord->clean ();
 	g_pReciteWord->ShowShooting ();
 }
 
-static void on_menu_typing_clicked ()
+static void on_menu_typing_clicked (gpointer data)
 {
 	g_pReciteWord->menu->close ();
 	g_pReciteWord->clean ();
 	g_pReciteWord->ShowTyping ();
 }
 
-static void on_menu_exit_clicked (gpointer data)
+static void on_menu_quit_clicked (gpointer data)
 {
 	g_pReciteWord->close ();
+}
+
+CMenuButton::CMenuButton(){
+	;
+}
+
+CMenuButton::~CMenuButton(){
+	;
+}
+
+void CMenuButton::destroy(){
+	gtk_widget_destroy(button);
+}
+
+void CMenuButton::do_clicked(){
+//	if (playsnd)
+		playsound (SND_BUTTONDOWN);
+	(*(runfunc)) (funcdata);
+}
+
+static void append_menuitem(CMenuButton &menubutton,char *string,GtkWidget *menu, void (*func) (gpointer), gpointer data){
+	menubutton.button= gtk_menu_item_new_with_label(string);
+	g_signal_connect(G_OBJECT(menubutton.button), "activate",G_CALLBACK(func), data);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), menubutton.button);
+	menubutton.runfunc=func;
+	menubutton.funcdata=data;
+	gtk_widget_show(menubutton.button);
 }
 
 CMenu::CMenu ()
 {
 	fixed = NULL;
+	
+				
 }
 
 CMenu::~CMenu ()
@@ -90,9 +119,11 @@ CMenu::~CMenu ()
 
 void CMenu::close ()
 {
-	if (!fixed)
+	if (!menu)
 		return;
 	make_continue();
+	gtk_widget_destroy(menu);
+	menu=NULL;
 	choosebook_button.destroy();
 	firstrecite_button.destroy();
 	revise_button.destroy();
@@ -100,132 +131,35 @@ void CMenu::close ()
 	know_button.destroy();
 	shooting_button.destroy();
 	typing_button.destroy();
-	exit_button.destroy();	
+	quit_button.destroy();	
 	
-	gtk_widget_destroy (fixed);
 	fixed = NULL;
 }
 
 void CMenu::show ()
 {
 
-	if (fixed)
+	if (menu){
+		gtk_menu_popup (GTK_MENU(menu), NULL, NULL, NULL, NULL,0, 0);
 		return;
+	}
+	
+	menu=gtk_menu_new();
+	
+	append_menuitem(choosebook_button,_("_Choose Book"), menu, on_menu_choosebook_clicked,NULL);
+	append_menuitem(firstrecite_button,_("_First Recite"), menu, on_menu_firstrecite_clicked,NULL);
+	append_menuitem(revise_button,_("_Revise"), menu, on_menu_revise_clicked,NULL);
+	append_menuitem(shooting_button,_("_Shooting"), menu, on_menu_shooting_clicked,NULL);
+	append_menuitem(typing_button,_("_Typing"), menu, on_menu_typing_clicked,NULL);
+	append_menuitem(rest_button,_("R_est"), menu, on_menu_rest_clicked,NULL);
+	append_menuitem(know_button,_("Kno_w"), menu, on_menu_know_clicked,NULL);
+	append_menuitem(quit_button,_("_Quit"), menu, on_menu_quit_clicked,NULL);
+	
+	gtk_menu_popup (GTK_MENU(menu), NULL, NULL, NULL, NULL,0, 0);
+	
 	playsound (SND_MENUSHOW);
 	make_pause();
-	
-	fixed = gtk_fixed_new ();
-	gtk_fixed_set_has_window(GTK_FIXED(fixed),TRUE);
-	gtk_widget_set_events(fixed,GDK_LEAVE_NOTIFY_MASK);
-	gtk_widget_set_size_request (fixed, Skin->face.menu.w, Skin->face.menu.h);
-	gtk_fixed_put (GTK_FIXED (g_pReciteWord->fixed), fixed,Skin->face.menu.x[0],Skin->face.menu.y[0]);
-	gtk_widget_show (fixed);
-	SetBackPixmap (fixed, Skin->face.menu.p[0]);
-
-	choosebook_button.create (fixed, Skin->face.choosebook_button.x[0],
-				   Skin->face.choosebook_button.y[0],
-				   Skin->face.choosebook_button.p[0],
-				   Skin->face.choosebook_button.p[1],
-				   Skin->face.choosebook_button.p[2],
-				   Skin->face.choosebook_button.p[3],
-				   on_menu_choosebook_clicked);
-	firstrecite_button.create (fixed, Skin->face.firstrecite_button.x[0],
-				   Skin->face.firstrecite_button.y[0],
-				   Skin->face.firstrecite_button.p[0],
-				   Skin->face.firstrecite_button.p[1],
-				   Skin->face.firstrecite_button.p[2],
-				   Skin->face.firstrecite_button.p[3],
-				   on_menu_firstrecite_clicked);
-	revise_button.create (fixed, Skin->face.revise_button.x[0],
-			      Skin->face.revise_button.y[0],
-			      Skin->face.revise_button.p[0],
-			      Skin->face.revise_button.p[1],
-			      Skin->face.revise_button.p[2],
-			      Skin->face.revise_button.p[3],
-			      on_menu_revise_clicked);
-	rest_button.create (fixed, Skin->face.rest_button.x[0],
-			      Skin->face.rest_button.y[0],
-			      Skin->face.rest_button.p[0],
-			      Skin->face.rest_button.p[1],
-			      Skin->face.rest_button.p[2],
-			      Skin->face.rest_button.p[3],
-			      on_menu_rest_clicked);
-	know_button.create (fixed, Skin->face.know_button.x[0],
-			      Skin->face.know_button.y[0],
-			      Skin->face.know_button.p[0],
-			      Skin->face.know_button.p[1],
-			      Skin->face.know_button.p[2],
-			      Skin->face.know_button.p[3],
-			      on_menu_know_clicked);
-	shooting_button.create (fixed, Skin->face.shooting_button.x[0],
-				Skin->face.shooting_button.y[0],
-				Skin->face.shooting_button.p[0],
-				Skin->face.shooting_button.p[1],
-				Skin->face.shooting_button.p[2],
-				Skin->face.shooting_button.p[3],
-				on_menu_shooting_clicked);
-	typing_button.create (fixed, Skin->face.typing_button.x[0],
-			      Skin->face.typing_button.y[0],
-			      Skin->face.typing_button.p[0],
-			      Skin->face.typing_button.p[1],
-			      Skin->face.typing_button.p[2],
-			      Skin->face.typing_button.p[3],
-			      on_menu_typing_clicked);
-
-	exit_button.create (fixed, Skin->face.menu_exit_button.x[0],
-			    Skin->face.menu_exit_button.y[0],
-			    Skin->face.menu_exit_button.p[0],
-			    Skin->face.menu_exit_button.p[1], (GdkPixmap *) NULL,
-			    on_menu_exit_clicked, NULL);
-
-	if (g_pReciteWord->now_book)
-	{
-		switch (g_pReciteWord->status)
-		{
-		case STATUS_NORMAL:
-			break;
-		case STATUS_CHOOSEBOOK:
-			choosebook_button.set_enable (FALSE);
-			break;
-		case STATUS_FIRSTRECITE_GROUP:
-		case STATUS_FIRSTRECITE_SKIM:
-		case STATUS_FIRSTRECITE_TEST:
-			firstrecite_button.set_enable (FALSE);
-			break;
-		case STATUS_REVISE_GROUP:
-		case STATUS_REVISE_TEST:
-		case STATUS_REVISE_SKIM:
-			revise_button.set_enable (FALSE);
-			break;
-		case STATUS_REST:
-			rest_button.set_enable (FALSE);
-			break;
-		case STATUS_KNOW:
-			know_button.set_enable (FALSE);
-			break;
-		case STATUS_SHOOTING:
-			shooting_button.set_enable (FALSE);
-			break;
-		case STATUS_TYPING:
-			typing_button.set_enable (FALSE);
-			break;
-		default:
-			break;
-		}
-	}
-	else
-	{
-		if (g_pReciteWord->status==STATUS_CHOOSEBOOK)
-			choosebook_button.set_enable (FALSE);
-		firstrecite_button.set_enable (FALSE);
-		revise_button.set_enable (FALSE);
-		rest_button.set_enable (FALSE);
-		know_button.set_enable (FALSE);
-		shooting_button.set_enable (FALSE);
-		typing_button.set_enable (FALSE);
-	}
-	g_signal_connect (G_OBJECT (fixed), "leave_notify_event",
-			  G_CALLBACK (on_menu_leave_notify), this);
+	return;
 }
 
 void CMenu::make_pause ()

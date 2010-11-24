@@ -8,53 +8,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: reciteword-0.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-20 19:09+0800\n"
-"PO-Revision-Date: 2010-10-20 19:09+0800\n"
+"POT-Creation-Date: 2010-11-24 21:14+0800\n"
+"PO-Revision-Date: 2010-11-24 21:18+0800\n"
 "Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../src/choosebook.cpp:387
+#: ../src/choosebook.cpp:316
 msgid "hardbooks"
 msgstr "疑难词库"
 
-#: ../src/choosebook.cpp:393
+#: ../src/choosebook.cpp:322
 msgid "my books"
 msgstr "个人单词库"
 
-#: ../src/choosebook.cpp:400
+#: ../src/choosebook.cpp:329
 msgid "books"
 msgstr "单词库"
 
-#: ../src/choosebook.cpp:433
+#: ../src/choosebook.cpp:347
 msgid "Directories"
 msgstr "目录"
 
-#: ../src/choosebook.cpp:545
+#: ../src/choosebook.cpp:450
 msgid "Book Name"
 msgstr "书名"
 
-#: ../src/choosebook.cpp:550
+#: ../src/choosebook.cpp:455
 msgid "Count"
 msgstr "单词数"
 
-#: ../src/choosebook.cpp:555
+#: ../src/choosebook.cpp:460
 msgid "Author"
 msgstr "作者"
 
-#: ../src/choosebook.cpp:560
+#: ../src/choosebook.cpp:465
 msgid "Website"
 msgstr "网址"
 
-#: ../src/choosebook.cpp:565
+#: ../src/choosebook.cpp:470
 msgid "Email"
 msgstr "邮箱"
 
-#: ../src/choosebook.cpp:570
+#: ../src/choosebook.cpp:475
 msgid "About"
 msgstr "关于"
 
@@ -82,6 +82,38 @@ msgstr ""
 #, c-format
 msgid "%d minutes and %d seconds"
 msgstr "%d分%d秒"
+
+#: ../src/menu.cpp:149
+msgid "_Choose Book"
+msgstr "选书(_C)"
+
+#: ../src/menu.cpp:150
+msgid "_First Recite"
+msgstr "单词初记(_F)"
+
+#: ../src/menu.cpp:151
+msgid "_Revise"
+msgstr "强化复习(_R)"
+
+#: ../src/menu.cpp:152
+msgid "_Shooting"
+msgstr "趣味打靶(_S)"
+
+#: ../src/menu.cpp:153
+msgid "_Typing"
+msgstr "打字神功(_T)"
+
+#: ../src/menu.cpp:154
+msgid "R_est"
+msgstr "休闲记忆(E)"
+
+#: ../src/menu.cpp:155
+msgid "Kno_w"
+msgstr "词义回想(_W)"
+
+#: ../src/menu.cpp:156
+msgid "_Quit"
+msgstr "退出(_Q)"
 
 #: ../src/option.cpp:46
 msgid "Skins"

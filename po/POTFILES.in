@@ -4,6 +4,7 @@ src/choosebook.cpp
 src/collectword.cpp
 src/dict.cpp
 src/mark.cpp
+src/menu.cpp
 src/option.cpp
 src/reciteword.cpp
 src/record.cpp
