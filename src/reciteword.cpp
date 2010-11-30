@@ -284,11 +284,6 @@ on_mainwnd_scroll (GtkWidget * window, GdkEventScroll * event ,CReciteWord * par
 	return true;
 }
 
-static gboolean
-on_mainwnd_key_press_release (GtkWidget * window, GdkEventKey * event ,CReciteWord * parent)
-{
-	return TRUE;
-}
 
 static gint
 on_mainwnd_delete_event (GtkWidget * window, GdkEvent *event , CReciteWord * parent)
@@ -467,10 +462,6 @@ CReciteWord::create ()
 			  G_CALLBACK (on_mainwnd_button_press), this);
 	g_signal_connect (G_OBJECT (window), "scroll_event",
 			  G_CALLBACK (on_mainwnd_scroll), this);
-	g_signal_connect (G_OBJECT (window), "key_press_event",
-			  G_CALLBACK (on_mainwnd_key_press_release), this);
-  	g_signal_connect (G_OBJECT (window), "key_release_event",
-			  G_CALLBACK (on_mainwnd_key_press_release), this);
 	g_signal_connect (G_OBJECT (window), "delete_event",
 			  G_CALLBACK (on_mainwnd_delete_event), this);
 	gtk_widget_show (window);
