@@ -108,7 +108,7 @@ static void append_menuitem(CMenuButton &menubutton,char *string,GtkWidget *menu
 CMenu::CMenu ()
 {
 	fixed = NULL;
-	
+	menu = NULL;
 				
 }
 
@@ -122,7 +122,6 @@ void CMenu::close ()
 	if (!menu)
 		return;
 	make_continue();
-	gtk_widget_destroy(menu);
 	menu=NULL;
 	choosebook_button.destroy();
 	firstrecite_button.destroy();
