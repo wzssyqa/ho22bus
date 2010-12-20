@@ -799,8 +799,7 @@ on_skim_pause_clicked ()
 	}
 	else
 	{
-		g_pReciteWord->firstrecite_skim->start_button.
-			set_enable (TRUE);
+		g_pReciteWord->firstrecite_skim->start_button.set_enable (TRUE);
 		g_pReciteWord->firstrecite_skim->pause_button.reset (Skin->
 								     skim.
 								     pause_button.
