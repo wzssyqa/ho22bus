@@ -38,7 +38,7 @@ AM_GLIB_GNU_GETTEXT
 dnl ================================================================
 dnl Start of pkg-config checks
 dnl ================================================================
-PKG_CHECK_MODULES(HO22BUS, gtk+-2.0 >= 2.2.0 gthread-2.0 >= 2.2.0)
+PKG_CHECK_MODULES(HO22BUS, gtk+-2.0 >= 2.2.0 gthread-2.0 >= 2.2.0 gstreamer-0.10)
 HO22BUS_LIBS="${HO22BUS_LIBS}"
 HO22BUS_CFLAGS="\
 	-Wall \
