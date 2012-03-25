@@ -10,11 +10,11 @@ this file is copy form x11amp,i changed it for some place.
 #include <stdlib.h>
 #include "configfile.h"
 
-static ConfigSection *rw_cfg_create_section (ConfigFile * cfg, gchar * name);
-static ConfigLine *rw_cfg_create_string (ConfigSection * section, gchar * key,
-					 gchar * value);
-static ConfigSection *rw_cfg_find_section (ConfigFile * cfg, gchar * name);
-static ConfigLine *rw_cfg_find_string (ConfigSection * section, gchar * key);
+static ConfigSection *rw_cfg_create_section (ConfigFile * cfg, const char * name);
+static ConfigLine *rw_cfg_create_string (ConfigSection * section, const char * key,
+					 const char * value);
+static ConfigSection *rw_cfg_find_section (ConfigFile * cfg, const char * name);
+static ConfigLine *rw_cfg_find_string (ConfigSection * section, const char * key);
 
 ConfigFile *
 rw_cfg_new (void)
@@ -28,7 +28,7 @@ rw_cfg_new (void)
 
 
 ConfigFile *
-rw_cfg_open_file (gchar * filename)
+rw_cfg_open_file (const char * filename)
 {
 	ConfigFile *cfg;
 
@@ -84,7 +84,7 @@ rw_cfg_open_file (gchar * filename)
 
 
 gboolean
-rw_cfg_write_file (ConfigFile * cfg, gchar * filename)
+rw_cfg_write_file (ConfigFile * cfg, const char * filename)
 {
 	FILE *file;
 	GList *section_list, *line_list;
@@ -118,7 +118,7 @@ rw_cfg_write_file (ConfigFile * cfg, gchar * filename)
 }
 
 gboolean
-rw_cfg_read_string (ConfigFile * cfg, gchar * section, gchar * key,
+rw_cfg_read_string (ConfigFile * cfg, const char * section, const char * key,
 		    gchar ** value)
 {
 	ConfigSection *sect;
@@ -134,7 +134,7 @@ rw_cfg_read_string (ConfigFile * cfg, gchar * section, gchar * key,
 }
 
 gboolean
-rw_cfg_read_int (ConfigFile * cfg, gchar * section, gchar * key, gint * value)
+rw_cfg_read_int (ConfigFile * cfg, const char * section, const char * key, gint * value)
 {
 	gchar *str;
 
@@ -150,7 +150,7 @@ rw_cfg_read_int (ConfigFile * cfg, gchar * section, gchar * key, gint * value)
 }
 
 gboolean
-rw_cfg_read_long (ConfigFile * cfg, gchar * section, gchar * key, glong * value)
+rw_cfg_read_long (ConfigFile * cfg, const char * section, const char * key, glong * value)
 {
 	gchar *str;
 
@@ -166,7 +166,7 @@ rw_cfg_read_long (ConfigFile * cfg, gchar * section, gchar * key, glong * value)
 }
 
 gboolean
-rw_cfg_read_time (ConfigFile * cfg, gchar * section, gchar * key,
+rw_cfg_read_time (ConfigFile * cfg, const char * section, const char * key,
 		  time_t * value)
 {
 	gchar *str;
@@ -183,7 +183,7 @@ rw_cfg_read_time (ConfigFile * cfg, gchar * section, gchar * key,
 }
 
 gboolean
-rw_cfg_read_boolean (ConfigFile * cfg, gchar * section, gchar * key,
+rw_cfg_read_boolean (ConfigFile * cfg, const char * section, const char * key,
 		     gboolean * value)
 {
 	gchar *str;
@@ -202,8 +202,8 @@ rw_cfg_read_boolean (ConfigFile * cfg, gchar * section, gchar * key,
 }
 
 void
-rw_cfg_write_string (ConfigFile * cfg, gchar * section, gchar * key,
-		     gchar * value)
+rw_cfg_write_string (ConfigFile * cfg, const char * section, const char * key,
+		     const char * value)
 {
 	ConfigSection *sect;
 	ConfigLine *line;
@@ -222,7 +222,7 @@ rw_cfg_write_string (ConfigFile * cfg, gchar * section, gchar * key,
 }
 
 void
-rw_cfg_write_int (ConfigFile * cfg, gchar * section, gchar * key, gint value)
+rw_cfg_write_int (ConfigFile * cfg, const char * section, const char * key, gint value)
 {
 	gchar *strvalue;
 	strvalue = g_strdup_printf ("%d", value);
@@ -231,7 +231,7 @@ rw_cfg_write_int (ConfigFile * cfg, gchar * section, gchar * key, gint value)
 }
 
 void
-rw_cfg_write_long (ConfigFile * cfg, gchar * section, gchar * key, glong value)
+rw_cfg_write_long (ConfigFile * cfg, const char * section, const char * key, glong value)
 {
 	gchar *strvalue;
 	strvalue = g_strdup_printf ("%ld", value);
@@ -240,7 +240,7 @@ rw_cfg_write_long (ConfigFile * cfg, gchar * section, gchar * key, glong value)
 }
 
 void
-rw_cfg_write_time (ConfigFile * cfg, gchar * section, gchar * key,
+rw_cfg_write_time (ConfigFile * cfg, const char * section, const char * key,
 		   time_t value)
 {
 	gchar *strvalue;
@@ -250,7 +250,7 @@ rw_cfg_write_time (ConfigFile * cfg, gchar * section, gchar * key,
 }
 
 void
-rw_cfg_write_boolean (ConfigFile * cfg, gchar * section, gchar * key,
+rw_cfg_write_boolean (ConfigFile * cfg, const char * section, const char * key,
 		      gboolean value)
 {
 	if (value)
@@ -260,8 +260,8 @@ rw_cfg_write_boolean (ConfigFile * cfg, gchar * section, gchar * key,
 }
 
 void
-rw_cfg_rename_section (ConfigFile * cfg, gchar * section,
-		       gchar * section_name)
+rw_cfg_rename_section (ConfigFile * cfg, const char * section,
+		       const char * section_name)
 {
 	ConfigSection *sect;
 
@@ -275,7 +275,7 @@ rw_cfg_rename_section (ConfigFile * cfg, gchar * section,
 }
 
 void
-rw_cfg_remove_key (ConfigFile * cfg, gchar * section, gchar * key)
+rw_cfg_remove_key (ConfigFile * cfg, const char * section, const char * key)
 {
 	ConfigSection *sect;
 	ConfigLine *line;
@@ -296,7 +296,7 @@ rw_cfg_remove_key (ConfigFile * cfg, gchar * section, gchar * key)
 }
 
 void
-rw_cfg_remove_section (ConfigFile * cfg, gchar * section)	/* this was added by me 我加的,应该没错误 */
+rw_cfg_remove_section (ConfigFile * cfg, const char * section)	/* this was added by me 我加的,应该没错误 */
 {
 	ConfigSection *sect;
 	ConfigLine *line;
@@ -357,7 +357,7 @@ rw_cfg_free (ConfigFile * cfg)
 }
 
 static ConfigSection *
-rw_cfg_create_section (ConfigFile * cfg, gchar * name)
+rw_cfg_create_section (ConfigFile * cfg, const char * name)
 {
 	ConfigSection *section;
 	section = (ConfigSection *)g_malloc0 (sizeof (ConfigSection));
@@ -368,7 +368,7 @@ rw_cfg_create_section (ConfigFile * cfg, gchar * name)
 }
 
 static ConfigLine *
-rw_cfg_create_string (ConfigSection * section, gchar * key, gchar * value)
+rw_cfg_create_string (ConfigSection * section, const char * key, const char * value)
 {
 	ConfigLine *line;
 	line = (ConfigLine *)g_malloc0 (sizeof (ConfigLine));
@@ -380,7 +380,7 @@ rw_cfg_create_string (ConfigSection * section, gchar * key, gchar * value)
 }
 
 static ConfigSection *
-rw_cfg_find_section (ConfigFile * cfg, gchar * name)
+rw_cfg_find_section (ConfigFile * cfg, const char * name)
 {
 	ConfigSection *section;
 	GList *list;
@@ -397,7 +397,7 @@ rw_cfg_find_section (ConfigFile * cfg, gchar * name)
 }
 
 static ConfigLine *
-rw_cfg_find_string (ConfigSection * section, gchar * key)
+rw_cfg_find_string (ConfigSection * section, const char * key)
 {
 	ConfigLine *line;
 	GList *list;

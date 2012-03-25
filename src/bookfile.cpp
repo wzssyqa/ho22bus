@@ -88,7 +88,7 @@ rw_book_get_word( gchar *src, gchar **w, gchar **t, gchar **m)//w:[W], t:[T], m:
 	
 
 static gchar *
-rw_book_get_value (gchar * str1, gchar * str2,gint utf8)
+rw_book_get_value (gchar * str1, const char * str2,gint utf8)
 {
 	gchar tmp, *tmp1, *tmp2;
 

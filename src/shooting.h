@@ -23,9 +23,9 @@ struct tLabelItem
 	  tLabelItem ();
 	void init ();
 	void create (GtkWidget * pfixed, gint x, gint y, gint w, gint h,
-		     GdkPixmap * pix_1, GdkPixmap * pix_2, gchar * str,
+		     GdkPixmap * pix_1, GdkPixmap * pix_2, const char * str,
 		     void (*func1) (glong), void (*func2) (glong), gint data);
-	void set_label (gchar * str);
+	void set_label (const char * str);
 	void set_enable (gint a);
 	void draw ();
 	void destroy ();

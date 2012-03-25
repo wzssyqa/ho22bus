@@ -29,35 +29,35 @@
 	ConfigFile;
 
 	ConfigFile *rw_cfg_new (void);
-	ConfigFile *rw_cfg_open_file (gchar * filename);
-	gboolean rw_cfg_write_file (ConfigFile * cfg, gchar * filename);
+	ConfigFile *rw_cfg_open_file (const char * filename);
+	gboolean rw_cfg_write_file (ConfigFile * cfg, const char * filename);
 	void rw_cfg_free (ConfigFile * cfg);
 
-	gboolean rw_cfg_read_string (ConfigFile * cfg, gchar * section,
-				     gchar * key, gchar ** value);
-	gboolean rw_cfg_read_int (ConfigFile * cfg, gchar * section,
-				  gchar * key, gint * value);
-	gboolean rw_cfg_read_long (ConfigFile * cfg, gchar * section,
-				  gchar * key, glong * value);
-	gboolean rw_cfg_read_time (ConfigFile * cfg, gchar * section,
-				   gchar * key, time_t * value);
-	gboolean rw_cfg_read_boolean (ConfigFile * cfg, gchar * section,
-				      gchar * key, gboolean * value);
-	void rw_cfg_write_string (ConfigFile * cfg, gchar * section,
-				  gchar * key, gchar * value);
-	void rw_cfg_write_int (ConfigFile * cfg, gchar * section, gchar * key,
+	gboolean rw_cfg_read_string (ConfigFile * cfg, const char * section,
+				     const char * key, gchar ** value);
+	gboolean rw_cfg_read_int (ConfigFile * cfg, const char * section,
+				  const char * key, gint * value);
+	gboolean rw_cfg_read_long (ConfigFile * cfg, const char * section,
+				  const char * key, glong * value);
+	gboolean rw_cfg_read_time (ConfigFile * cfg, const char * section,
+				   const char * key, time_t * value);
+	gboolean rw_cfg_read_boolean (ConfigFile * cfg, const char * section,
+				      const char * key, gboolean * value);
+	void rw_cfg_write_string (ConfigFile * cfg, const char * section,
+				  const char * key, const char * value);
+	void rw_cfg_write_int (ConfigFile * cfg, const char * section, const char * key,
 			       gint value);
-	void rw_cfg_write_long (ConfigFile * cfg, gchar * section, gchar * key,
+	void rw_cfg_write_long (ConfigFile * cfg, const char * section, const char * key,
 			       glong value);
-	void rw_cfg_write_time (ConfigFile * cfg, gchar * section,
-				gchar * key, time_t value);
-	void rw_cfg_write_boolean (ConfigFile * cfg, gchar * section,
-				   gchar * key, gboolean value);
+	void rw_cfg_write_time (ConfigFile * cfg, const char * section,
+				const char * key, time_t value);
+	void rw_cfg_write_boolean (ConfigFile * cfg, const char * section,
+				   const char * key, gboolean value);
 
-	void rw_cfg_rename_section (ConfigFile * cfg, gchar * section,
-				    gchar * section_name);
-	void rw_cfg_remove_key (ConfigFile * cfg, gchar * section,
-				gchar * key);
-	void rw_cfg_remove_section (ConfigFile * cfg, gchar * section);
+	void rw_cfg_rename_section (ConfigFile * cfg, const char * section,
+				    const char * section_name);
+	void rw_cfg_remove_key (ConfigFile * cfg, const char * section,
+				const char * key);
+	void rw_cfg_remove_section (ConfigFile * cfg, const char * section);
 
 #endif

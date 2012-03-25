@@ -1397,7 +1397,7 @@ tListItem2::set_selected (int a)
 }
 
 void
-tListItem2::set_label (gchar * str)
+tListItem2::set_label (const char * str)
 {
 	gtk_label_set_text (GTK_LABEL (label), str);
 }

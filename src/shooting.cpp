@@ -92,7 +92,7 @@ tLabelItem::init ()
 
 void
 tLabelItem::create (GtkWidget * pfixed, gint x, gint y, gint w, gint h,
-		    GdkPixmap * pix_1, GdkPixmap * pix_2, gchar * str,
+		    GdkPixmap * pix_1, GdkPixmap * pix_2, const char * str,
 		    void (*func1) (glong), void (*func2) (glong), gint data)
 {
 	init ();
@@ -155,7 +155,7 @@ tLabelItem::draw ()
 }
 
 void
-tLabelItem::set_label (gchar * str)
+tLabelItem::set_label (const char * str)
 {
 	if (str)
 		std::strcpy (text, str);
@@ -489,6 +489,8 @@ shooting_test_next_word ()
 					g_pReciteWord->shooting_chooseword_info.scope_start = g_pReciteWord->chooseword->last_scope_start + g_pReciteWord->chooseword->last_scope_count;
 					g_pReciteWord->shooting_chooseword_info.scope_count = g_pReciteWord->chooseword->last_scope_count;
 				}
+				g_pReciteWord->PopupChooseword (on_shooting_chooseword_ok_clicked,
+					on_shooting_chooseword_cancel_clicked, &(g_pReciteWord->shooting_chooseword_info));
 				return;
 			}
 			else
@@ -778,7 +780,8 @@ CShooting::init ()
 	status = FALSE;
 	started = FALSE;
 }
-void
+
+void
 CShooting::init_2 ()
 {
 	shoot_pixmap_timer = 0;

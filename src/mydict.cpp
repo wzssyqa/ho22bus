@@ -46,9 +46,9 @@ void mydict::mystrcpy(char *dest,char *src)
 {
    int i,len;
    unsigned char *s;
-   char *ln="\xa";
+   const char *ln="\xa";
    const char *tmp;
-   static char * prop[]={" "," "," ","a. ","ad. ","art. ","conj. ","int. ","n. "," "," ","num. ",
+   const char * prop[]={" "," "," ","a. ","ad. ","art. ","conj. ","int. ","n. "," "," ","num. ",
               "prep. "," ","pron. ","v. ","aux. ","vi. ","vt. ","vbl. "," ","st. ",
               "pr. ","pp. ","pl. ","ing. "," ","adj. ","adv. ","pla. ","pn. "," "};
    s=(unsigned char *)src;

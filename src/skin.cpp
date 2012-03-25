@@ -179,7 +179,7 @@ _Skin_reciteword::~_Skin_reciteword()
 }
 
 static void
-skin_read_info (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info (ConfigFile * cfgfile, const char *section, const char *key,
 			  int deep, int x[],int y[], int *w, int *h)
 {
 	gchar *ab, *a, *b;
@@ -215,77 +215,77 @@ skin_read_info (ConfigFile * cfgfile, char *section, char *key,
 }
 
 static void
-skin_read_info_widget_1 (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_widget_1 (ConfigFile * cfgfile, const char *section, const char *key,
 			 struct _Skin_widget_1 *button)
 {
 	skin_read_info(cfgfile,section,key,1,button->x,button->y,NULL,NULL);
 }
 
 static void
-skin_read_info_widget_2 (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_widget_2 (ConfigFile * cfgfile, const char *section, const char *key,
 			 struct _Skin_widget_2 *button)
 {
 	skin_read_info(cfgfile,section,key,1,button->x,button->y,&(button->w),&(button->h));
 }
 
 static void
-skin_read_info_pixbuf_1 (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_pixbuf_1 (ConfigFile * cfgfile, const char *section, const char *key,
 			 struct _Skin_pixbuf_1 *button)
 {
 	skin_read_info(cfgfile,section,key,2,button->x,button->y,&(button->w),&(button->h));
 }
 
 static void
-skin_read_info_pixmap_1 (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_pixmap_1 (ConfigFile * cfgfile, const char *section, const char *key,
 			 struct _Skin_pixmap_1 *button)
 {
 	skin_read_info(cfgfile,section,key,2,button->x,button->y,&(button->w),&(button->h));
 }
 
 static void
-skin_read_info_pixmap_2 (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_pixmap_2 (ConfigFile * cfgfile, const char *section, const char *key,
 			 struct _Skin_pixmap_2 *button)
 {
 	skin_read_info(cfgfile,section,key,3,button->x,button->y,&(button->w),&(button->h));
 }
 
 static void
-skin_read_info_pixmap_3 (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_pixmap_3 (ConfigFile * cfgfile, const char *section, const char *key,
 			 struct _Skin_pixmap_3 *button)
 {
 	skin_read_info(cfgfile,section,key,4,button->x,button->y,&(button->w),&(button->h));
 }
 
 static void
-skin_read_info_pixmap_4 (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_pixmap_4 (ConfigFile * cfgfile, const char *section, const char *key,
 			 struct _Skin_pixmap_4 *button)
 {
 	skin_read_info(cfgfile,section,key,5,button->x,button->y,&(button->w),&(button->h));
 }
 
 static void
-skin_read_info_pixmap_6 (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_pixmap_6 (ConfigFile * cfgfile, const char *section, const char *key,
 			 struct _Skin_pixmap_6 *button)
 {
 	skin_read_info(cfgfile,section,key,7,button->x,button->y,&(button->w),&(button->h));
 }
 
 static void
-skin_read_info_pixmap_10 (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_pixmap_10 (ConfigFile * cfgfile, const char *section, const char *key,
 			  struct _Skin_pixmap_10 *button)
 {
 	skin_read_info(cfgfile,section,key,11,button->x,button->y,&(button->w),&(button->h));
 }
 
 static void
-skin_read_info_pixmap_14 (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_pixmap_14 (ConfigFile * cfgfile, const char *section, const char *key,
 			  struct _Skin_pixmap_14 *button)
 {
 	skin_read_info(cfgfile,section,key,15,button->x,button->y,&(button->w),&(button->h));
 }
 
 static void
-skin_read_info_phonetic (ConfigFile * cfgfile, char *section, char *key,
+skin_read_info_phonetic (ConfigFile * cfgfile, const char *section, const char *key,
 			 struct _Skin_phonetic *button)
 {
 	gchar *ab, *a, *b;
@@ -312,7 +312,7 @@ skin_read_info_phonetic (ConfigFile * cfgfile, char *section, char *key,
 }
 
 gint
-skin_load_info (gchar * skin_dir)
+skin_load_info (const char * skin_dir)
 {
 	ConfigFile *cfgfile;
 

@@ -62,7 +62,8 @@ struct tViewer
 	GdkGC *gc;
 	GdkColormap *cmap;
 	GdkColor color;
-	gchar *str1, *str2, **str_1, **str_2;
+	const char *str1, *str2;
+	gchar **str_1, **str_2;
 	PangoLayout *layout_w,*layout_m;
 	gint now_count;
 	gint show_meaning;
@@ -78,7 +79,7 @@ struct tViewer
 		     gchar ** str_w, gchar ** str_m, gint _count,
 		     void (*func) ());
 	void set_words(gchar ** str_w, gchar ** str_m, gint _count);
-	void set_text(gchar * str_w, gchar * str_m);
+	void set_text(const char * str_w, const char * str_m);
 	void start_skim ();
 	void stop_skim ();
 	void pause_skim ();

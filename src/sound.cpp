@@ -20,7 +20,7 @@ CSound::play (SOUND_EVENTS event,PLAY_METHOD method)
 {
 	if (!canplay)
 		return;
-	gchar *filename;
+	const char *filename;
 	switch (event)
 	{
 		case SND_BUTTONDOWN:
@@ -69,9 +69,9 @@ CSound::play (SOUND_EVENTS event,PLAY_METHOD method)
 			filename = "";
 			break;
 	}
-	filename = g_build_filename(reciteword_data_dir, "modules", filename, NULL);
-	play_file(filename,method);
-	g_free(filename);
+	gchar *full_filename = g_build_filename(reciteword_data_dir, "modules", filename, NULL);
+	play_file(full_filename,method);
+	g_free(full_filename);
 }
 
 CSound::~CSound ()

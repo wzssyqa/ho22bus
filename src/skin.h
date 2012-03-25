@@ -373,7 +373,7 @@ struct _Skin
 	struct _Skin_mark mark;
 };
 
-gint skin_load_info (gchar * skin_dir);
+gint skin_load_info (const char * skin_dir);
 void skin_load_reciteword (GtkWidget * window);
 void skin_load_face (GtkWidget * window);
 void skin_load_dict (GtkWidget * window);

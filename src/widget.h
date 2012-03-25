@@ -126,12 +126,12 @@ struct tEntry
 	  tEntry ();
 	void init ();
 	void create (GtkWidget * pfixed, gint x, gint y, gint w, gint h,
-		     gchar * str, gchar * right_text, gint show_pen0,
+		     const char * str, const char * right_text, gint show_pen0,
 		     gint (*func) (gint, gint));
 	void draw ();
 	void draw_cursor (gint a);
 	void changed (gchar * str, guint pos, gint keyval);
-	void set_text (gchar * str);
+	void set_text (const char * str);
 	void set_showlength (gint a);
 	void set_righttext (gchar * right_text);
 	void set_showpen (gint a);

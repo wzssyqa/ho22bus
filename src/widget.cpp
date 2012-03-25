@@ -867,7 +867,7 @@ tEntry::init ()
 
 void
 tEntry::create (GtkWidget * pfixed, gint x, gint y, gint w,
-		gint h, gchar * str, gchar * right_text, gint show_pen0,
+		gint h, const char * str, const char * right_text, gint show_pen0,
 		gint (*func) (gint, gint))
 {
 	init ();
@@ -1190,7 +1190,7 @@ tEntry::changed (gchar * str, guint pos, gint keyval)
 }
 
 void
-tEntry::set_text (gchar * str)
+tEntry::set_text (const char * str)
 {
 	strcpy (text, str);
 	//pango_layout_set_text(layout,str,-1);

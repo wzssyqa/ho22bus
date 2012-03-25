@@ -34,7 +34,7 @@ typedef struct _CategoriesTreeItem	CategoriesTreeItem;
 
 struct _CategoriesTreeItem
 {
-	gchar			*category;
+	const char			*category;
 	
 	CategoriesTreeItem 	*children;
 

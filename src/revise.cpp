@@ -671,7 +671,7 @@ tViewer::set_words(gchar ** str_w, gchar ** str_m, gint _count)
 }
 
 void
-tViewer::set_text(gchar * str_w, gchar * str_m)
+tViewer::set_text(const char * str_w, const char * str_m)
 {
 	str1 = str_w;
 	str2 = str_m;

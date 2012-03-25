@@ -40,7 +40,7 @@ struct tListItem2
 	void clean_selected ();
 	void set_selected (int a);
 	void set_group (GSList * group);
-	void set_label (gchar * str);
+	void set_label (const char * str);
 	void destroy ();
 	 ~tListItem2 ();
 };
